@@ -1,0 +1,129 @@
+---
+description: "Spec-driven dev, TDD, debugging, architecture — invoke with /iron:spec, /iron:tdd, /iron:debug, /iron:arch"
+globs: []
+alwaysApply: false
+---
+
+# Ironworks Plan & Build (L3–L4)
+
+## L3 — /iron:spec — Spec-Driven Development
+
+Every feature starts as a spec before it becomes code.
+
+### Lifecycle
+
+| Phase | Command | Action |
+|-------|---------|--------|
+| Research | `explore <topic>` | Investigate, update CONTEXT.md |
+| Draft | `propose <name>` | RFC-style spec with acceptance criteria |
+| Build | `apply <spec>` | Implement, link changes to requirements |
+| Check | `verify <spec>` | Validate impl matches spec |
+| Revise | `update <name>` | Modify spec with delta markers |
+| Complete | `archive <spec>` | Move to archive |
+
+### Spec Format
+
+- **GIVEN/WHEN/THEN** acceptance criteria for every requirement
+- **RFC 2119 keywords**: MUST, SHOULD, MAY used precisely
+- Delta markers track changes: `[+]` added, `[-]` removed, `[~]` modified
+
+### Rules
+
+- Every feature traces to a spec
+- Code without a spec is unauthorized code
+- Specs live in `ironworks/specs/`
+
+---
+
+## L4 — /iron:tdd — Test-Driven Development
+
+Red → Green → Refactor. No exceptions.
+
+### Cycle
+
+1. **Red** — Write a failing test that defines the expected behavior
+2. **Green** — Write the minimum code to make it pass
+3. **Refactor** — Clean up only when all tests are green
+4. **Repeat** — Next slice of behavior
+
+### Vertical Slices
+
+Build one feature end-to-end, not horizontal layers. A slice touches all layers (UI → API → DB) for one behavior.
+
+### Seam-Based Testing (Feathers)
+
+Find seams — points where you can alter behavior without editing code:
+- Constructor injection
+- Interface boundaries
+- Config switches
+
+Test through seams to avoid over-mocking. Mock boundaries only, never internals.
+
+### Anti-Patterns to Reject
+
+- **Implementation-coupled tests** — tests that break on refactors
+- **Tautological tests** — tests that verify the mock, not behavior
+- **Horizontal slicing** — testing layers in isolation before integration
+- **Mock internals** — mock boundaries (DB, API, filesystem), never internal functions
+
+### Variants
+
+- `<feature>` — start a new TDD cycle for a feature
+- `fix <bug>` — write regression test first, then fix
+- `continue` — resume an interrupted TDD cycle
+
+---
+
+## L4 — /iron:debug — Structured Debugging
+
+Isolate → Reproduce → Narrow → Fix.
+
+### Process
+
+1. **Reproduce** — exact inputs + exact environment, every time
+2. **Narrow** — binary search the codebase to isolate the fault
+3. **Hypothesize** — form a specific, falsifiable theory
+4. **Verify** — tagged debug logs `[DEBUG-xxxx]` to confirm or reject
+5. **Fix** — root cause only, never symptoms
+6. **Regression test** — prevent recurrence
+7. **Clean up** — remove all debug logs
+
+### 10 Feedback Loops
+
+Print, breakpoint, assert, snapshot, diff, replay, trace, profile, reduce, isolate.
+
+### Non-Deterministic Bugs
+
+Vary systematically: time, concurrency, data volume, environment config.
+
+### Subcommand
+
+- `narrow` — bisect code paths to find the fault boundary
+
+---
+
+## L4 — /iron:arch — Architecture Analysis
+
+Understand and improve system structure.
+
+### Subcommands
+
+| Command | Action |
+|---------|--------|
+| `analyze` | Assess current architecture |
+| `propose <change>` | Design-It-Twice: always two approaches before choosing |
+| `assess <design>` | Evaluate a proposed design |
+| `record <decision>` | Generate ADR in `docs/adr/` |
+
+### Deep Module Vocabulary (Ousterhout)
+
+- **Information hiding** — modules conceal implementation details
+- **Deep vs shallow modules** — deep = simple interface, complex implementation (good)
+- **Temporal decomposition** — organizing by when things happen (usually bad)
+- **Strategic vs tactical** — invest in good design vs quick hacks
+- **Classitis** — too many small classes that fragment logic
+- **Pass-through methods** — methods that add nothing, just forward calls
+
+### 12 Fowler Smells
+
+Shotgun Surgery, Feature Envy, God Class, Long Method, Data Clump, Primitive Obsession, Message Chain, Speculative Generality, Refused Bequest, Parallel Inheritance, Comments-as-deodorant, Divergent Change.

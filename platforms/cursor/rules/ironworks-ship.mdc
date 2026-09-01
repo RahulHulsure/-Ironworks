@@ -1,0 +1,111 @@
+---
+description: "Deploy preflight, deployment config, and session handoff — invoke with /iron:preflight, /iron:deploy, /iron:handoff"
+globs: []
+alwaysApply: false
+---
+
+# Ironworks Ship & Continuity (L6–L∞)
+
+## L6 — /iron:preflight — Deploy Preflight
+
+Verify deployment readiness before shipping. Platform-aware checks.
+
+### Platform Checks
+
+| Platform | Verifications |
+|----------|---------------|
+| **Vercel** | Framework detection, build output, env vars, function sizes |
+| **AWS (ECS/Lambda)** | Dockerfile, task definition, IAM roles, VPC config |
+| **Railway** | Nixpacks/Dockerfile, PORT binding, health checks |
+| **Fly.io** | fly.toml, Dockerfile, regions, volumes |
+| **DigitalOcean** | App spec, components, resources |
+
+### Universal Checks (All Platforms)
+
+- `.env` alignment — all required vars present and documented
+- Dependency audit — no known vulnerabilities, lockfile in sync
+- Git clean — no uncommitted changes, no untracked files
+- Tests pass — full suite green before deploy
+- Build succeeds — production build completes without errors
+
+### Variants
+
+- `--platform <name>` — run checks for a specific platform
+- `--fix` — auto-fix safe issues (missing env entries, lockfile sync)
+
+---
+
+## L6 — /iron:deploy — Deployment Config
+
+Generate platform-specific deployment configuration.
+
+### Supported Platforms
+
+DigitalOcean, Vercel, AWS (ECS/Lambda/App Runner), Fly.io, Railway, Render.
+
+### Subcommands
+
+| Command | Action |
+|---------|--------|
+| `<platform>` | Generate deploy config for the specified platform |
+| `migrate <from> <to>` | Convert config between platforms |
+| `preview` | Generate PR preview environment CI config |
+
+### Migration
+
+`migrate <from> <to>` converts between any two supported platforms:
+- Preserves environment variables
+- Maps platform-specific bindings to equivalents
+- Flags features without direct equivalents
+
+### Deploy Workflow
+
+```
+1. /iron:review          — ensure code quality
+2. /iron:audit           — check for accumulated debt
+3. /iron:preflight       — verify deploy readiness
+4. /iron:deploy <target> — generate deploy config
+5. /iron:handoff         — document what was shipped
+```
+
+---
+
+## L∞ — /iron:handoff — Session Handoff
+
+Preserve context across sessions. Every session should end with a handoff.
+
+### What Gets Captured
+
+- **Work summary** — what was done, decisions made, problems solved
+- **Modified files** — list of all changed files with brief descriptions
+- **Lessons learned** — patterns discovered, gotchas encountered
+- **Next steps** — suggested skills and actions for the next session
+
+### Privacy Filter
+
+Automatically strips sensitive data before saving:
+- API keys and tokens
+- Passwords and connection strings
+- Private keys and certificates
+- Auth headers and session tokens
+
+### Variants
+
+| Flag | Optimized For |
+|------|---------------|
+| `--for-agent` | AI continuation — structured for machine parsing |
+| `--for-human` | Teammate handoff — narrative format for humans |
+
+### Session Recall
+
+When starting a new session, the most recent handoff in `ironworks/handoffs/` is read automatically to restore context.
+
+### Output
+
+Saves to `ironworks/handoffs/` with timestamp-based filenames.
+
+### Rules
+
+- Always run at end of session — context loss is preventable waste
+- Privacy filter is mandatory — never include secrets in handoffs
+- Handoffs are append-only — never edit previous handoffs

@@ -11,9 +11,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/skills-12-brightgreen.svg" alt="12 Skills">
   <img src="https://img.shields.io/badge/layers-7-orange.svg" alt="7 Layers">
-  <img src="https://img.shields.io/badge/lines-4%2C134-lightgrey.svg" alt="4,134 Lines">
+  <img src="https://img.shields.io/badge/platforms-16+-purple.svg" alt="16+ Platforms">
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0">
-  <img src="https://img.shields.io/badge/claude_code-plugin-purple.svg" alt="Claude Code Plugin">
 </p>
 
 <p align="center">
@@ -29,13 +28,32 @@
 
 ## 🚀 Quick Start
 
+Install for your AI coding tool:
+
 ```bash
-# Install the plugin
+# Claude Code (plugin install)
 claude plugin install ironworks
 
-# Or from a local clone
+# Cursor
+cp -r platforms/cursor/rules/ .cursor/rules/
+
+# GitHub Copilot
+cp platforms/copilot/copilot-instructions.md .github/copilot-instructions.md
+
+# Windsurf / Devin Desktop
+cp -r platforms/windsurf/rules/ .windsurf/rules/
+
+# OpenAI Codex
+cp AGENTS.md .   # Already works — Codex reads AGENTS.md natively
+
+# Gemini CLI
+cp platforms/gemini/GEMINI.md .
+
+# Or use the universal installer (auto-detects your tools)
 git clone https://github.com/rmyndharis/ironworks-skills.git
-claude plugin install ./ironworks-skills
+cd ironworks-skills
+./install.sh                  # macOS/Linux
+.\install.ps1                 # Windows
 ```
 
 After installing, **Layer 0 is automatically active** — the discipline ladder, output priority, and security rules run every response. No command needed.
@@ -48,7 +66,7 @@ After installing, **Layer 0 is automatically active** — the discipline ladder,
 /iron:spec propose <feature>  # Plan a feature before building
 ```
 
-> **Optional:** Copy [`docs/CLAUDE-GLOBAL.md`](docs/CLAUDE-GLOBAL.md) to `~/.claude/CLAUDE.md` for full workflow integration across all projects.
+> **16+ platforms supported** — see the [full platform list](#-supported-platforms) for Cline, Aider, Amazon Q, Kiro, Roo Code, Continue.dev, JetBrains Junie, Trae, Augment, Kilo Code, and Google Antigravity.
 
 ---
 
@@ -320,6 +338,36 @@ Privacy-filtered session compression with cross-session continuity.
 
 ---
 
+## 🖥️ Supported Platforms
+
+Ironworks works with **16+ AI coding tools**. The core skills are platform-agnostic — each platform gets adapter files in its native format.
+
+| Platform | Type | Install |
+|----------|------|---------|
+| **Claude Code** | Plugin (full skills) | `claude plugin install ironworks` |
+| **Cursor** | Rules (`.mdc`) | Copy `platforms/cursor/rules/` → `.cursor/rules/` |
+| **GitHub Copilot** | Instructions | Copy `platforms/copilot/` → `.github/` |
+| **Windsurf / Devin** | Rules | Copy `platforms/windsurf/rules/` → `.windsurf/rules/` |
+| **OpenAI Codex** | AGENTS.md | Built-in — `AGENTS.md` in repo root |
+| **Cline** | Rules | Copy `platforms/cline/` → `.clinerules/` |
+| **Gemini CLI** | GEMINI.md | Copy `platforms/gemini/GEMINI.md` → project root |
+| **Aider** | CONVENTIONS.md | Copy `platforms/aider/CONVENTIONS.md` → project root |
+| **Amazon Q** | Rules | Copy `platforms/amazon-q/rules/` → `.amazonq/rules/` |
+| **Kiro** | Steering | Copy `platforms/kiro/steering/` → `.kiro/steering/` |
+| **Roo Code** | Rules | Copy `platforms/roo/rules/` → `.roo/rules/` |
+| **Continue.dev** | Rules | Copy `platforms/continue/continuerules` → `.continuerules` |
+| **JetBrains Junie** | Guidelines | Copy `platforms/junie/guidelines.md` → `.junie/guidelines.md` |
+| **Trae** | Rules | Copy `platforms/trae/rules/` → `.trae/rules/` |
+| **Augment Code** | Guidelines | Copy `platforms/augment/augment-guidelines` → `.augment-guidelines` |
+| **Kilo Code** | Rules | Copy `platforms/kilo/rules/` → `.kilo/rules/` |
+| **Google Antigravity** | Skills | Copy `platforms/antigravity/skills/` → `.agent/skills/` |
+
+> **Cross-tool note:** Many platforms (Codex, Amp, Devin, Augment, Kilo, Continue, Aider, Trae) also read `AGENTS.md` natively. The repo ships one at the root — it works out of the box for all of these.
+
+See [`platforms/README.md`](platforms/README.md) for detailed per-platform setup instructions.
+
+---
+
 ## 🔄 Workflows
 
 ### New Project
@@ -389,10 +437,8 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 
 ```
 ironworks-skills/
-├── .claude-plugin/
-│   ├── plugin.json              # Plugin manifest (name, version, skills)
-│   └── marketplace.json         # Marketplace metadata
-├── .openclaw/skills/
+├── .claude-plugin/              # Claude Code plugin manifest
+├── .openclaw/skills/            # Core skill definitions (12 skills)
 │   ├── iron-init/SKILL.md       # L1 — Project bootstrap
 │   ├── iron-graph/SKILL.md      # L2 — Dependency mapping
 │   ├── iron-spec/SKILL.md       # L3 — Spec-driven dev
@@ -405,27 +451,48 @@ ironworks-skills/
 │   ├── iron-deploy/SKILL.md     # L6 — Deployment config
 │   ├── iron-handoff/SKILL.md    # L∞ — Session handoff
 │   └── iron-help/SKILL.md       # Command reference
+├── platforms/                   # Multi-platform adapters
+│   ├── cursor/rules/            # Cursor .mdc rules
+│   ├── copilot/                 # GitHub Copilot instructions
+│   ├── windsurf/rules/          # Windsurf / Devin Desktop
+│   ├── cline/                   # Cline rules
+│   ├── gemini/                  # Gemini CLI (GEMINI.md)
+│   ├── codex/                   # OpenAI Codex (AGENTS.md)
+│   ├── aider/                   # Aider (CONVENTIONS.md)
+│   ├── amazon-q/rules/          # Amazon Q Developer
+│   ├── kiro/steering/           # Kiro (AWS)
+│   ├── roo/rules/               # Roo Code
+│   ├── continue/                # Continue.dev
+│   ├── junie/                   # JetBrains Junie
+│   ├── trae/rules/              # Trae (ByteDance)
+│   ├── augment/                 # Augment Code
+│   ├── kilo/rules/              # Kilo Code
+│   ├── antigravity/skills/      # Google Antigravity
+│   ├── ironworks-portable.md    # Universal rules (source for all adapters)
+│   └── README.md                # Platform setup guide
 ├── docs/
 │   ├── banner.svg               # GitHub README banner
 │   ├── layers.svg               # Layer architecture diagram
 │   ├── CLAUDE-GLOBAL.md         # Drop-in ~/.claude/CLAUDE.md
-│   └── CLAUDE-PROJECT-TEMPLATE.md  # Per-project template
-├── AGENTS.md                    # L0 — Always-on discipline rules
-├── CONTRIBUTING.md              # How to contribute
+│   └── CLAUDE-PROJECT-TEMPLATE.md
+├── AGENTS.md                    # L0 — Always-on discipline (Codex/Amp/Devin compatible)
+├── install.sh                   # Universal installer (macOS/Linux)
+├── install.ps1                  # Universal installer (Windows)
+├── CONTRIBUTING.md
 ├── LICENSE                      # MIT
-├── README.md                    # This file
-└── after-install.md             # Post-install instructions
+└── README.md                    # This file
 ```
 
 ---
 
 ## 🤝 Works With
 
-Ironworks complements other tools in the ecosystem:
+Ironworks runs on **16+ AI coding platforms** and complements other tools in the ecosystem:
 
 - **[Graphify](https://github.com/Graphify-Labs/graphify)** — full knowledge graphs for deep codebase understanding (Layer 2 complement)
 - **[Ponytail](https://github.com/nicholasgriffintn/ponytail)** — YAGNI-first coding discipline (Layer 0 shares the same philosophy)
 - **[AgentMemory](https://github.com/rohitg00/agentmemory)** — persistent cross-session memory (Layer ∞ complement)
+- **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** — the spec-driven methodology that inspired Layer 3
 
 ---
 

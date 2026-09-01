@@ -1,0 +1,90 @@
+---
+description: "Code review and simplification audit — invoke with /iron:review or /iron:audit"
+globs: []
+alwaysApply: false
+---
+
+# Ironworks Quality (L5)
+
+## L5 — /iron:review — Code Review
+
+Two parallel axes run independently on every review.
+
+### Standards Axis
+
+Checks code against L0 discipline rules:
+
+1. **Discipline ladder compliance** — was new code justified at every rung?
+2. **Never-compromise checklist** — input validation, error handling, parameterized queries, auth, secrets, typed errors, tests, understanding
+3. **12 Fowler smells** — Shotgun Surgery, Feature Envy, God Class, Long Method, Data Clump, Primitive Obsession, Message Chain, Speculative Generality, Refused Bequest, Parallel Inheritance, Comments-as-deodorant, Divergent Change
+4. **Ironworks mark validation** — are `# ironworks:` marks accurate and up to date?
+
+### Spec Axis
+
+- Every changed file traced to a spec requirement
+- Untraceable changes flagged — code that does not map to any spec is suspicious
+- Spec compliance verified against GIVEN/WHEN/THEN criteria
+
+### Over-Engineering Tags
+
+When code is more complex than necessary, tag it:
+
+| Tag | Meaning |
+|-----|---------|
+| `[delete]` | Remove entirely — not needed |
+| `[stdlib]` | Replace with standard library |
+| `[native]` | Replace with platform feature |
+| `[yagni]` | Not needed yet — remove until required |
+| `[shrink]` | Simplify — same behavior, less code |
+
+### Variants
+
+| Flag | Scope |
+|------|-------|
+| `--staged` | Review staged changes only |
+| `--branch <b>` | Review changes on branch |
+| `--file <f>` | Review specific file |
+| `--spec <s>` | Review against specific spec |
+| `--fix` | Auto-fix blockers found during review |
+| `--over-engineering` | Over-engineering scan only |
+
+---
+
+## L5 — /iron:audit — Simplification Audit
+
+Find complexity to eliminate. Complements review by looking at the broader codebase, not just recent changes.
+
+### Scan Targets
+
+| Target | What It Finds |
+|--------|---------------|
+| Ironworks marks | Deliberate debts left with `# ironworks:` comments |
+| Shallow modules | Small interface hiding nothing — merge or inline |
+| Dead code | Unreachable functions, unused exports, stale imports |
+| Unnecessary abstractions | Indirection that adds no value |
+| Over-configuration | Config that is never varied — hardcode it |
+
+### Subcommand: `debt`
+
+Harvest all `# ironworks:` marks into a prioritized debt ledger:
+
+1. Collect every `# ironworks:` comment in the codebase
+2. Score by blast radius — how many files/features are affected
+3. Sort by priority — highest blast radius first
+4. Output actionable upgrade paths from the marks
+
+### Rules
+
+- Only flag what you can prove — no speculative findings
+- If uncertain, tag as "investigate" not "fix"
+- `--fix` auto-fixes safe deletions only (dead code, unused imports)
+- Never auto-fix anything that changes behavior
+
+### Review + Audit Workflow
+
+```
+1. /iron:review            — check recent changes against standards and spec
+2. /iron:audit             — scan broader codebase for accumulated complexity
+3. /iron:audit debt        — harvest ironworks marks into prioritized backlog
+4. Address findings        — fix blockers, schedule debt items
+```

@@ -1,0 +1,88 @@
+---
+description: "Project bootstrap and codebase mapping — invoke with /iron:init or /iron:graph"
+globs: []
+alwaysApply: false
+---
+
+# Ironworks Setup & Understand (L1–L2)
+
+## L1 — /iron:init — Project Bootstrap
+
+Scaffold from zero to production-ready.
+
+### Stack Detection
+
+Detects 16+ stacks: Next.js, React, Vue, Angular, SvelteKit, Express, FastAPI, Django, Laravel, Go, Rust, Java/Spring, Scala, Elixir/Phoenix, .NET, Flutter.
+
+### Scaffolded Files
+
+- `CLAUDE.md` — project instructions for AI agents
+- `CONTEXT.md` — domain vocabulary and shared terms
+- `.env.example` — environment variable template
+- `ironworks/specs/` — spec storage directory
+- `docs/adr/` — architecture decision records
+- CI config (GitHub Actions, GitLab CI, etc.)
+- `git init` with `.gitignore`
+
+### Variants
+
+- `--stack <name>` — skip auto-detection, use specified stack
+- `--minimal` — git + CLAUDE.md + .gitignore only
+
+### Rules
+
+- Never overwrite existing files
+- No placeholder code — every generated file must be functional
+- Scaffold must pass its own CI on first run
+
+---
+
+## L2 — /iron:graph — Codebase Dependency Map
+
+Map the codebase before making changes. Essential when joining an existing project.
+
+### Scanning
+
+Scans imports/exports across the entire codebase. Scores each edge:
+
+| Score | Type | Meaning |
+|-------|------|---------|
+| 1.0 | EXTRACTED | Explicit import statement |
+| 0.4–0.9 | INFERRED | Shared DB, event bus, API chain |
+| 0.1–0.3 | AMBIGUOUS | Uncertain connection |
+
+### Detection
+
+- **Communities** — clusters of tightly-coupled files via import analysis
+- **God nodes** — files with 10+ connections (refactoring candidates)
+- **Orphans** — files with no imports or exports
+- **Circular deps** — dependency cycles
+- **Layer violations** — cross-layer imports that break architecture
+- **Surprise edges** — unexpected cross-community connections
+
+### Subcommands
+
+| Command | Description |
+|---------|-------------|
+| `query "<question>"` | BFS depth 3 search (`--dfs` for depth 6) |
+| `deps <file>` | Show all dependencies of a file |
+| `hotspots` | Files with most connections |
+| `orphans` | Disconnected files |
+| `path "A" "B"` | Shortest dependency path between two files |
+| `--deep` | Extended analysis |
+| `--watch` | Live monitoring mode |
+| `--update` | Refresh existing graph |
+
+### Output
+
+Saves results to:
+- `ironworks/graph-report.md` — human-readable report
+- `ironworks/graph-manifest.json` — machine-readable graph data
+
+### Workflow
+
+When joining an existing project:
+1. Run `/iron:graph` to map the codebase
+2. Review god nodes and circular deps
+3. Use `query` to understand specific areas
+4. Proceed to `/iron:spec explore` for feature context
