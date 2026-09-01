@@ -1,7 +1,7 @@
 ---
 name: iron-arch
 description: "Architecture analysis: scan the codebase for structural problems — god files, circular dependencies, layer violations, shallow modules, missing boundaries — and produce an improvement plan with deep-module vocabulary."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

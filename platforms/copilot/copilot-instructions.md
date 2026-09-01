@@ -1,4 +1,4 @@
-<!-- Ironworks AI Development Pipeline — https://github.com/rmyndharis/ironworks-skills -->
+<!-- Ironworks AI Development Pipeline — https://github.com/RahulHulsure/-Ironworks -->
 
 <!-- INSTALL: Copy this file to .github/copilot-instructions.md in your repository root. -->
 <!-- GitHub Copilot loads it automatically for all chat and inline suggestions. -->
@@ -9,7 +9,7 @@
 > Industrial-grade development rules for AI coding agents.
 > 12 skills · 7 layers · 60+ commands
 
-Repository: https://github.com/rmyndharis/ironworks-skills
+Repository: https://github.com/RahulHulsure/-Ironworks
 License: MIT · © 2026 Rahul Hulsure
 
 ---

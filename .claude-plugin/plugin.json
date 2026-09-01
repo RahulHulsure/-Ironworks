@@ -4,10 +4,10 @@
   "description": "Industrial-grade development pipeline: 12 skills across 7 layers — from project bootstrap to deploy preflight, with spec-driven features, TDD, knowledge graphs, architecture analysis, and structured debugging.",
   "author": {
     "name": "Rahul Hulsure",
-    "url": "https://github.com/rmyndharis"
+    "url": "https://github.com/RahulHulsure"
   },
-  "homepage": "https://github.com/rmyndharis/ironworks-skills",
-  "repository": "https://github.com/rmyndharis/ironworks-skills",
+  "homepage": "https://github.com/RahulHulsure/-Ironworks",
+  "repository": "https://github.com/RahulHulsure/-Ironworks",
   "license": "MIT",
   "keywords": [
     "project-scaffold",
@@ -30,7 +30,7 @@
     "developerName": "Rahul Hulsure",
     "category": "Productivity",
     "capabilities": ["Instructions"],
-    "websiteURL": "https://github.com/rmyndharis/ironworks-skills",
+    "websiteURL": "https://github.com/RahulHulsure/-Ironworks",
     "defaultPrompt": [
       "Bootstrap a new project with /iron:init",
       "Map the codebase with /iron:graph",

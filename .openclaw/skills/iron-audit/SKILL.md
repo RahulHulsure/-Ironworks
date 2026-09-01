@@ -1,7 +1,7 @@
 ---
 name: iron-audit
 description: "Codebase audit for over-engineering: find unnecessary abstractions, speculative features, overbuilt patterns, and dead code. Tag every finding. Harvest ironworks: debt markers. The discipline ladder applied repo-wide."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

@@ -4,7 +4,7 @@ description: "Industrial-grade development pipeline — 12 skills across 7 layer
 version: 1.0.0
 ---
 
-<!-- Ironworks v1.0.0 — https://github.com/rmyndharis/ironworks-skills -->
+<!-- Ironworks v1.0.0 — https://github.com/RahulHulsure/-Ironworks -->
 <!-- Platform adapter: Google Antigravity (.agent/skills/<name>/SKILL.md) -->
 
 # Ironworks — AI Development Pipeline
@@ -12,7 +12,7 @@ version: 1.0.0
 > Industrial-grade development rules for AI coding agents.
 > 12 skills · 7 layers · 60+ commands
 
-Repository: https://github.com/rmyndharis/ironworks-skills
+Repository: https://github.com/RahulHulsure/-Ironworks
 License: MIT · © 2026 Rahul Hulsure
 
 ---

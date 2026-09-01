@@ -55,7 +55,7 @@ Each skill file follows this structure:
 ---
 name: iron-skillname
 description: "One-line description"
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: iron-debug
 description: "Structured debugging: build a feedback loop, form hypotheses, instrument the code, narrow down the cause, fix it, and add a regression test. No guessing, no shotgun fixes."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

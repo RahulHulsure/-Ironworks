@@ -1,7 +1,7 @@
 ---
 name: iron-spec
 description: "Spec-driven feature development: explore, propose, design, implement, verify, update, and archive features. RFC 2119 requirements, GIVEN/WHEN/THEN scenarios, delta-based archiving, and domain context tracking."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

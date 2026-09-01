@@ -1,7 +1,7 @@
 ---
 name: iron-preflight
 description: "Pre-deployment validation: checks env vars, health endpoints, DB migrations, secrets in code, error handling, logging, CORS, and resource limits before you ship to production."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

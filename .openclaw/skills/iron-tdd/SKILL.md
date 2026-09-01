@@ -1,7 +1,7 @@
 ---
 name: iron-tdd
 description: "Test-driven development workflow: write the test first (red), make it pass with minimum code (green), then clean up (refactor). Enforces the cycle, seam-based testing, and prevents skipping steps."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: iron-deploy
 description: "Generate deployment configurations for any platform: DigitalOcean, Docker, Vercel, AWS, Railway. Produces ready-to-use config files from your project structure."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

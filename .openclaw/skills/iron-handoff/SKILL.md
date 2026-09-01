@@ -1,7 +1,7 @@
 ---
 name: iron-handoff
 description: "Compress the current session into a handoff document: what was done, what's in progress, what's blocked, key decisions made, and exact state of the codebase. For session continuity or team handoffs."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

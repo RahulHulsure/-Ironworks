@@ -1,7 +1,7 @@
 ---
 name: iron-help
 description: "Show all Ironworks commands, what they do, and when to use each one."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: iron-init
 description: "Bootstrap any project from zero to production-ready: folder structure, CLAUDE.md, git, specs directory, CI template, env config. One command, fully scaffolded."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

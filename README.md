@@ -1,10 +1,12 @@
+<!-- Ironworks: 12 production-grade skills for AI coding agents. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Gemini CLI, and 10+ more platforms. Open source MIT. -->
+
 <p align="center">
-  <img src="docs/banner.svg" alt="Ironworks" width="100%">
+  <img src="docs/banner.svg" alt="Ironworks — AI coding agent skills for Claude Code, Cursor, GitHub Copilot, Windsurf, and 16+ platforms" width="100%">
 </p>
 
 <p align="center">
-  <strong>Industrial-grade development pipeline for AI coding agents.</strong><br>
-  12 skills across 7 layers — from project bootstrap to deploy preflight.
+  <strong>AI coding agent skills for Claude Code, Cursor, GitHub Copilot, and your entire development pipeline.</strong><br>
+  12 production-grade skills across 7 layers — from project bootstrap to deploy preflight.
 </p>
 
 <p align="center">
@@ -50,7 +52,7 @@ cp AGENTS.md .   # Already works — Codex reads AGENTS.md natively
 cp platforms/gemini/GEMINI.md .
 
 # Or use the universal installer (auto-detects your tools)
-git clone https://github.com/rmyndharis/ironworks-skills.git
+git clone https://github.com/RahulHulsure/-Ironworks.git
 cd ironworks-skills
 ./install.sh                  # macOS/Linux
 .\install.ps1                 # Windows
@@ -75,7 +77,7 @@ After installing, **Layer 0 is automatically active** — the discipline ladder,
 Ironworks organizes skills into layers that compose naturally across the development lifecycle. Each layer builds on the ones below. You don't need every layer for every task — use what fits.
 
 <p align="center">
-  <img src="docs/layers.svg" alt="Ironworks Layer Architecture" width="700">
+  <img src="docs/layers.svg" alt="Ironworks layer architecture — 7 layers organizing AI development pipeline skills for spec-driven development, TDD, code review, and deployment" width="700">
 </p>
 
 ```
@@ -428,7 +430,7 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 | **[Matt Pocock Skills](https://github.com/mattpocock/skills)** | Seam-based testing, domain modeling, 2-axis review, Fowler smells, deep modules, Design-It-Twice, feedback loops | L4, L5 |
 | **[Graphify](https://github.com/Graphify-Labs/graphify)** | Confidence scoring, community detection, DFS/BFS queries, watch mode, incremental rebuild | L2 |
 | **[AgentMemory](https://github.com/rohitg00/agentmemory)** | Privacy filtering, lessons learned, session recall, phase boundary decisions | L∞ |
-| **[Antigravity](https://github.com/rmyndharis/antigravity-skills)** | 16+ stack detection, bundle architecture, comprehensive framework coverage | L1 |
+| **[Antigravity](https://github.com/RahulHulsure/antigravity-skills)** | 16+ stack detection, bundle architecture, comprehensive framework coverage | L1 |
 | **[DO App Platform](https://github.com/digitalocean-labs/do-app-platform-skills)** | Platform migration, PR previews, multi-env approval gates, 6-platform deploy | L6 |
 
 ---
@@ -503,6 +505,14 @@ MIT — use it, modify it, share it. See [LICENSE](LICENSE).
 ---
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/rmyndharis">Rahul Hulsure</a></strong><br>
+  <strong>Built by <a href="https://github.com/RahulHulsure">Rahul Hulsure</a></strong><br>
   <sub>If this saves you time, give it a ⭐</sub>
 </p>
+
+<!-- 
+Keywords: AI coding assistant rules, Claude Code plugin, Cursor rules, GitHub Copilot instructions, 
+AI development pipeline, code review automation, TDD workflow, spec-driven development, 
+AI agent skills, coding assistant configuration, Windsurf rules, Cline rules, Gemini CLI, 
+OpenAI Codex AGENTS.md, software engineering AI tools, AI pair programming, 
+ironworks skills, code quality automation, multi-platform AI coding tools
+-->

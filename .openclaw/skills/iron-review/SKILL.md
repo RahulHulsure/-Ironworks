@@ -1,7 +1,7 @@
 ---
 name: iron-review
 description: "Smart code review on 2 parallel axes — Standards (discipline ladder + Fowler smells + security) and Spec (requirements + test coverage). Catches over-engineering, spec drift, missing tests, and security basics. Not just style — substance."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 

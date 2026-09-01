@@ -1,7 +1,7 @@
 ---
 name: iron-graph
 description: "Map a codebase into a dependency graph: modules, imports, exports, cross-file connections, god files, orphaned code, community detection, and confidence-scored edges. Understand before you build."
-homepage: https://github.com/rmyndharis/ironworks-skills
+homepage: https://github.com/RahulHulsure/-Ironworks
 license: MIT
 ---
 
