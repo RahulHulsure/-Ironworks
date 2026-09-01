@@ -1,0 +1,45 @@
+{
+  "name": "ironworks",
+  "version": "1.0.0",
+  "description": "Industrial-grade development pipeline: 12 skills across 7 layers — from project bootstrap to deploy preflight, with spec-driven features, TDD, knowledge graphs, architecture analysis, and structured debugging.",
+  "author": {
+    "name": "Rahul Hulsure",
+    "url": "https://github.com/rmyndharis"
+  },
+  "homepage": "https://github.com/rmyndharis/ironworks-skills",
+  "repository": "https://github.com/rmyndharis/ironworks-skills",
+  "license": "MIT",
+  "keywords": [
+    "project-scaffold",
+    "spec-driven",
+    "code-review",
+    "deployment",
+    "yagni",
+    "tdd",
+    "preflight",
+    "scalability",
+    "knowledge-graph",
+    "architecture",
+    "debugging",
+    "session-handoff"
+  ],
+  "interface": {
+    "displayName": "Ironworks",
+    "shortDescription": "Industrial-grade dev pipeline — 12 skills, 7 layers",
+    "longDescription": "Twelve original skills covering the full development lifecycle: project bootstrapping, codebase understanding via knowledge graphs, spec-driven feature planning, TDD workflows, structured debugging, architecture analysis, smart code reviews, codebase audits, deployment preflight, platform deploy configs, and session handoffs. Built on a layered architecture where each layer composes with the others.",
+    "developerName": "Rahul Hulsure",
+    "category": "Productivity",
+    "capabilities": ["Instructions"],
+    "websiteURL": "https://github.com/rmyndharis/ironworks-skills",
+    "defaultPrompt": [
+      "Bootstrap a new project with /iron:init",
+      "Map the codebase with /iron:graph",
+      "Propose a feature with /iron:spec propose <name>",
+      "Run TDD workflow with /iron:tdd",
+      "Debug a problem with /iron:debug",
+      "Review my changes with /iron:review",
+      "Run deploy preflight with /iron:preflight"
+    ],
+    "brandColor": "#2D4A5E"
+  }
+}
