@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1d23"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="gearG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a5568"/>
+      <stop offset="100%" stop-color="#2d3748"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+
+  <!-- Gradient accent bar at top -->
+  <rect x="0" y="0" width="1280" height="4" fill="url(#accent)"/>
+
+  <!-- Gear icon -->
+  <g transform="translate(200, 260) scale(1.8)" fill="none" stroke="#4a5568" stroke-width="2.5" opacity="0.5">
+    <path d="M0,-32 L4,-28 L4,-22 L8,-20 L14,-24 L18,-20 L16,-14 L20,-8 L26,-8 L28,-2 L24,2 L26,8 L32,10 L32,16 L26,18 L26,24 L30,28 L26,32 L20,30 L14,32 L14,38 L8,38 L6,32 L0,30 L-6,32 L-8,38 L-14,38 L-14,32 L-20,30 L-26,32 L-30,28 L-26,24 L-26,18 L-32,16 L-32,10 L-26,8 L-24,2 L-28,-2 L-26,-8 L-20,-8 L-16,-14 L-18,-20 L-14,-24 L-8,-20 L-4,-22 L-4,-28 Z" fill="url(#gearG)" stroke="#4a5568"/>
+    <circle cx="0" cy="5" r="12" fill="#0d1117" stroke="#4a5568"/>
+    <circle cx="0" cy="5" r="4" fill="#4a5568"/>
+  </g>
+
+  <!-- Anvil -->
+  <g transform="translate(115, 215) scale(1.5)" fill="#4a5568" opacity="0.35">
+    <rect x="0" y="0" width="50" height="8" rx="2"/>
+    <polygon points="50,0 68,4 50,8"/>
+    <path d="M5,8 L45,8 L42,28 L38,28 L38,36 L12,36 L12,28 L8,28 Z"/>
+    <rect x="6" y="36" width="38" height="6" rx="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="640" y="240" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="86" fill="#ffffff" letter-spacing="12">IRONWORKS</text>
+
+  <!-- Subtitle -->
+  <text x="640" y="300" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="28" fill="#94a3b8">Industrial-grade development pipeline for AI coding agents</text>
+
+  <!-- Divider -->
+  <line x1="340" y1="340" x2="940" y2="340" stroke="#4a5568" stroke-width="1" opacity="0.4"/>
+
+  <!-- Stats row -->
+  <text x="640" y="390" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="22" fill="#e2e8f0" letter-spacing="4">12 SKILLS · 7 LAYERS · 16+ PLATFORMS</text>
+
+  <!-- Platform list -->
+  <text x="640" y="435" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="18" fill="#64748b">Claude Code · Cursor · GitHub Copilot · Windsurf · Codex · Gemini · Aider · and more</text>
+
+  <!-- Layer color dots -->
+  <g transform="translate(380, 480)">
+    <circle cx="0" cy="0" r="8" fill="#92400e" opacity="0.9"/><text x="0" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L0</text>
+    <circle cx="65" cy="0" r="8" fill="#059669" opacity="0.9"/><text x="65" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L1</text>
+    <circle cx="130" cy="0" r="8" fill="#2563eb" opacity="0.9"/><text x="130" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L2</text>
+    <circle cx="195" cy="0" r="8" fill="#7c3aed" opacity="0.9"/><text x="195" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L3</text>
+    <circle cx="260" cy="0" r="8" fill="#d97706" opacity="0.9"/><text x="260" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L4</text>
+    <circle cx="325" cy="0" r="8" fill="#059669" opacity="0.9"/><text x="325" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L5</text>
+    <circle cx="390" cy="0" r="8" fill="#2563eb" opacity="0.9"/><text x="390" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L6</text>
+    <circle cx="455" cy="0" r="8" fill="#7c3aed" opacity="0.9"/><text x="455" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#64748b">L∞</text>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="570" width="1280" height="70" fill="#161b22"/>
+  <text x="640" y="612" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="16" fill="#8b949e">github.com/RahulHulsure/-Ironworks · MIT License · Open Source</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="636" width="1280" height="4" fill="url(#accent)"/>
+</svg>

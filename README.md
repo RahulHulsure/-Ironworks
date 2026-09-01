@@ -11,19 +11,21 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href="https://github.com/RahulHulsure/-Ironworks/stargazers"><img src="https://img.shields.io/github/stars/RahulHulsure/-Ironworks?style=flat&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/RahulHulsure/-Ironworks/network/members"><img src="https://img.shields.io/github/forks/RahulHulsure/-Ironworks?style=flat&color=blue" alt="Forks"></a>
+  <a href="https://github.com/RahulHulsure/-Ironworks/issues"><img src="https://img.shields.io/github/issues/RahulHulsure/-Ironworks?style=flat&color=red" alt="Issues"></a>
+  <img src="https://img.shields.io/github/last-commit/RahulHulsure/-Ironworks?style=flat&color=green" alt="Last Commit">
   <img src="https://img.shields.io/badge/skills-12-brightgreen.svg" alt="12 Skills">
-  <img src="https://img.shields.io/badge/layers-7-orange.svg" alt="7 Layers">
   <img src="https://img.shields.io/badge/platforms-16+-purple.svg" alt="16+ Platforms">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0">
 </p>
 
 <p align="center">
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#%EF%B8%8F-the-layer-architecture">Architecture</a> •
+  <a href="#%EF%B8%8F-supported-platforms">Platforms</a> •
   <a href="#-all-12-skills">Skills</a> •
   <a href="#-workflows">Workflows</a> •
-  <a href="#-philosophy">Philosophy</a> •
-  <a href="#-origins">Origins</a>
+  <a href="#-origins">Origins</a> •
+  <a href="#-roadmap">Roadmap</a>
 </p>
 
 ---
@@ -498,6 +500,26 @@ Ironworks runs on **16+ AI coding platforms** and complements other tools in the
 
 ---
 
+## 📈 Star History
+
+<p align="center">
+  <a href="https://star-history.com/#RahulHulsure/-Ironworks&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=RahulHulsure/-Ironworks&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=RahulHulsure/-Ironworks&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=RahulHulsure/-Ironworks&type=Date" width="600" />
+    </picture>
+  </a>
+</p>
+
+---
+
+## 🗺️ Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for what's coming next — MCP integration, new skills, and more.
+
+---
+
 ## 📄 License
 
 MIT — use it, modify it, share it. See [LICENSE](LICENSE).
@@ -507,6 +529,13 @@ MIT — use it, modify it, share it. See [LICENSE](LICENSE).
 <p align="center">
   <strong>Built by <a href="https://github.com/RahulHulsure">Rahul Hulsure</a></strong><br>
   <sub>If this saves you time, give it a ⭐</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/RahulHulsure/-Ironworks/issues/new?template=bug_report.md">Report a Bug</a> •
+  <a href="https://github.com/RahulHulsure/-Ironworks/issues/new?template=feature_request.md">Request a Feature</a> •
+  <a href="CONTRIBUTING.md">Contribute</a> •
+  <a href="ROADMAP.md">Roadmap</a>
 </p>
 
 <!-- 
