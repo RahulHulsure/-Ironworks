@@ -35,12 +35,20 @@ Check the current directory for existing files. Detect the stack:
 |--------|-------|
 | `package.json` with `next` | Next.js frontend |
 | `package.json` with `react` (no next) | React SPA |
+| `package.json` with `vue` | Vue.js frontend |
+| `package.json` with `svelte` or `svelte.config.js` | SvelteKit |
+| `package.json` with `express` | Express.js backend |
+| `angular.json` | Angular frontend |
 | `requirements.txt` or `pyproject.toml` with `fastapi` | FastAPI backend |
 | `requirements.txt` with `django` | Django backend |
+| `composer.json` with `laravel` | Laravel/PHP |
 | `go.mod` | Go backend |
 | `Cargo.toml` | Rust project |
 | `pom.xml` or `build.gradle` | Java/Spring project |
+| `build.sbt` | Scala project |
 | `mix.exs` | Elixir/Phoenix project |
+| `*.csproj` or `*.sln` | .NET/C# project |
+| `pubspec.yaml` | Flutter/Dart project |
 | None of the above | Ask the user |
 
 If the project already has files, say what you detected and confirm before
@@ -56,16 +64,41 @@ stack, but every project gets these:
 ```
 project-root/
 ├── CLAUDE.md                # Project instructions (generated, specific to this project)
+├── CONTEXT.md               # Shared vocabulary / glossary (generated)
 ├── .gitignore               # Stack-appropriate ignores
 ├── .env.example             # All env vars the project needs, with descriptions
 ├── ironworks/               # Spec-driven development directory
 │   ├── specs/               # Living requirements (empty to start)
 │   └── changes/             # In-flight feature proposals
+├── docs/
+│   └── adr/                 # Architecture Decision Records
+│       └── 0001-initial-stack-choice.md
 ├── .github/
 │   └── workflows/
 │       └── ci.yml           # Basic CI: lint, test, type-check
 └── README.md                # Project readme with setup instructions
 ```
+
+**Architecture Decision Records (ADR) format:**
+
+Every ADR follows the file naming convention `NNNN-slug.md` (e.g., `0001-initial-stack-choice.md`) and uses this structure:
+
+```markdown
+# NNNN. Title
+
+**Status:** Accepted | Proposed | Deprecated | Superseded by NNNN
+
+## Context
+What is the issue that we're seeing that is motivating this decision or change?
+
+## Decision
+What is the change that we're proposing and/or doing?
+
+## Consequences
+What becomes easier or harder to do because of this change?
+```
+
+The initial ADR (`0001-initial-stack-choice.md`) documents the detected or chosen stack and why.
 
 **Stack-specific additions:**
 
@@ -107,11 +140,12 @@ For **single backend** (FastAPI, Django, Go, etc.):
 For **minimal** (`--minimal`):
 ```
 ├── CLAUDE.md
+├── CONTEXT.md
 ├── .gitignore
 └── README.md
 ```
 
-### Step 3 — Generate CLAUDE.md
+### Step 3 — Generate CLAUDE.md and CONTEXT.md
 
 The CLAUDE.md is the most important output. It must be specific to THIS project,
 not a generic template. Include:
@@ -149,6 +183,32 @@ not a generic template. Include:
 - Propose features: `/iron:spec propose <name>`
 - Review code: `/iron:review`
 - Pre-deploy check: `/iron:preflight`
+```
+
+**Also generate a starter `CONTEXT.md`** with the project name and a placeholder glossary:
+
+```markdown
+# [Project Name] — Domain Glossary
+
+Shared vocabulary for this project. Every contributor and AI agent should use
+these terms consistently.
+
+## Format
+
+Each entry follows this pattern:
+
+```
+Term: definition. _Avoid_: synonym1, synonym2.
+```
+
+The _Avoid_ list names words that mean the same thing but should not be used in
+code, specs, or conversation — pick one word and stick with it.
+
+## Glossary
+
+User: A person with an account in the system. _Avoid_: customer, client, member (unless specifically distinct).
+
+[Add terms as the project evolves. Run `/iron:spec explore` to update.]
 ```
 
 ### Step 4 — Generate .env.example

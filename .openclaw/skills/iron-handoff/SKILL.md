@@ -28,6 +28,27 @@ a team member on what happened.
 
 ## What You Must Do When Invoked
 
+### Step 0 — Session Recall
+
+Before generating a handoff, check if `ironworks/handoffs/` exists and contains
+previous handoff files. If it does, read the most recent one to establish
+cross-session continuity. Note any accumulated lessons or recurring blockers
+from prior handoffs — these inform the current handoff's context.
+
+### Step 0.5 — Privacy Filter
+
+Before generating any handoff content, scan the session for sensitive data and
+ensure none appears in the output:
+
+- **API keys**: patterns like `sk-`, `AKIA`, `ghp_`, `xoxb-`, `npm_`, `glpat-`, `dop_v1_`
+- **Bearer tokens and JWTs**: `Bearer ey...`, `eyJ...` base64 token patterns
+- **Passwords and connection strings**: URIs containing credentials (`://user:pass@`)
+- **Any raw secret values** seen during the session
+
+Replace all instances with `[REDACTED_SECRET]`. Never include raw secrets in
+handoff documents, even if they appeared in terminal output or config files
+during the session.
+
 ### Step 1 — Scan Session State
 
 Review everything that happened in this session:
@@ -128,7 +149,61 @@ routes, and rate limiting should go on the auth endpoints.
 - `backend/tests/services/test_auth.py` — new (14 tests)
 ```
 
-### Step 3 — Save the Handoff
+### Step 3 — Add Lessons Learned
+
+After generating the main handoff content, append a lessons section capturing
+what was learned during the session:
+
+```markdown
+### Lessons
+- What worked: [e.g., "TDD approach caught the off-by-one before it hit staging"]
+- What didn't: [e.g., "Tried mocking the email service with unittest.mock — too brittle, switched to a fake SMTP server"]
+- What was surprising: [e.g., "The ORM generates 4 queries for what should be 1 join — eager loading didn't help, had to write raw SQL"]
+```
+
+These lessons accumulate across sessions. If `ironworks/handoffs/` contains
+prior handoffs, read their lessons sections and carry forward any that remain
+relevant. Over time this creates a project-specific knowledge base of what
+works and what doesn't.
+
+### Step 4 — Add Suggested Next Skills
+
+Based on what was done in this session and what remains, recommend specific
+`/iron:*` commands for the next session to start with:
+
+```markdown
+### Suggested Next Steps
+- Start with `/iron:spec show add-auth` to see current task state
+- Run `/iron:review --staged` on the auth changes before merging
+- Run `/iron:preflight --platform aws` before deploying the auth feature
+- Consider `/iron:audit` on the services directory — three new files were added rapidly
+```
+
+Be specific — name the spec, the directory, the platform. Generic advice
+like "run review" is not useful.
+
+### Step 5 — Phase Boundary Decision
+
+At the end of the handoff, evaluate the current session state and recommend
+one of these actions (in priority order):
+
+1. **Continue** — if context is still fresh, the work is in flow, and the
+   context window is not near capacity. Say: "Context is fresh — continue working."
+2. **Handoff** — if context is getting long but work should continue in a
+   new session. This is the action being taken right now.
+3. **Subagent** — if a side task can run in parallel without blocking the
+   main work. Say: "Consider spawning a subagent for [task] while continuing [main work]."
+4. **Compact** — if context is too long but the session should continue
+   rather than starting fresh. Say: "Context is long but session should continue — compact before proceeding."
+
+Include the recommendation at the bottom of the handoff:
+
+```markdown
+### Session Transition
+Recommended action: **Handoff** — context is 80%+ consumed, 4 tasks remain.
+```
+
+### Step 6 — Save the Handoff
 
 Save to `ironworks/handoffs/YYYY-MM-DD-HH.md` (create the directory if needed).
 

@@ -101,14 +101,35 @@ Run each check section in order. For each check, report:
 - Health check and resource limits defined
 
 **Vercel (`--platform vercel`):**
-- `vercel.json` exists with proper config
-- Edge functions vs serverless correctly assigned
-- Environment variables configured in project settings
+- `vercel.json` exists with valid, parseable config
+- Edge vs serverless function assignment is correct — compute-heavy or data-dependent routes use serverless, latency-sensitive lightweight routes use edge
+- Environment variables listed in .env.example are configured in Vercel dashboard/project settings
+- Build output directory matches framework convention (e.g., `.next` for Next.js, `dist` for Vite)
+- Serverless function bundle sizes are within Vercel limits (50 MB compressed for serverless, 4 MB for edge)
+- API routes are properly configured and reachable (no conflicting rewrites or redirects)
 
 **AWS (`--platform aws`):**
-- IAM roles follow least privilege
-- Security groups properly scoped
-- CloudWatch logging configured
+- IAM roles follow least privilege — no `*` actions or `*` resources unless justified
+- Security groups are scoped — no `0.0.0.0/0` ingress on non-HTTP/HTTPS ports (only 80/443 may be open to all)
+- CloudWatch logging enabled — log groups exist, retention policy set (not infinite)
+- Auto-scaling configured with proper min/max — min >= 1, max set to a reasonable ceiling
+- RDS/database instances are in a private subnet — not publicly accessible
+- Secrets stored in AWS Secrets Manager or Systems Manager Parameter Store, not in environment variables or code
+
+**Railway (`--platform railway`):**
+- `railway.toml` exists with valid config
+- Health check path configured (`[deploy.healthcheckPath]`)
+- Build command specified (`[build.buildCommand]`)
+- Start command specified (`[deploy.startCommand]`)
+- Environment variables match .env.example
+
+**Fly.io (`--platform fly`):**
+- `fly.toml` exists with valid config
+- Health check configured under `[[http_service.checks]]` or `[[services.tcp_checks]]`
+- `auto_stop_machines` configured (prevents idle cost)
+- `min_machines_running` set appropriately (>= 1 for production)
+- Volumes configured via `[mounts]` for any persistent data (SQLite, uploads, local state)
+- Secrets set via `fly secrets` — no secrets in fly.toml
 
 ## Output Format
 

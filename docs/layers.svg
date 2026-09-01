@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420">
+  <defs>
+    <!-- Layer gradient definitions -->
+    <linearGradient id="l-inf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="l6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="l5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="l4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="l3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="l2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="l1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="l0" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="420" rx="6" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="350" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="16" fill="#e2e8f0" letter-spacing="3">IRONWORKS LAYER ARCHITECTURE</text>
+
+  <!-- Layer constants: barX=40, barW=620, barH=38, startY=50, gap=6 -->
+
+  <!-- L-inf CONTINUITY -->
+  <rect x="40" y="50" width="620" height="38" rx="6" fill="url(#l-inf)" opacity="0.9"/>
+  <text x="60" y="74" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L&#x221e;</text>
+  <text x="170" y="74" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">CONTINUITY</text>
+  <text x="645" y="74" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:handoff</text>
+
+  <!-- L6 SHIP -->
+  <rect x="40" y="94" width="620" height="38" rx="6" fill="url(#l6)" opacity="0.9"/>
+  <text x="60" y="118" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L6</text>
+  <text x="155" y="118" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">SHIP</text>
+  <text x="645" y="118" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:preflight, /iron:deploy</text>
+
+  <!-- L5 QUALITY -->
+  <rect x="40" y="138" width="620" height="38" rx="6" fill="url(#l5)" opacity="0.9"/>
+  <text x="60" y="162" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L5</text>
+  <text x="165" y="162" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">QUALITY</text>
+  <text x="645" y="162" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:review, /iron:audit</text>
+
+  <!-- L4 BUILD -->
+  <rect x="40" y="182" width="620" height="38" rx="6" fill="url(#l4)" opacity="0.9"/>
+  <text x="60" y="206" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L4</text>
+  <text x="155" y="206" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">BUILD</text>
+  <text x="645" y="206" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:tdd, /iron:debug, /iron:arch</text>
+
+  <!-- L3 PLAN -->
+  <rect x="40" y="226" width="620" height="38" rx="6" fill="url(#l3)" opacity="0.9"/>
+  <text x="60" y="250" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L3</text>
+  <text x="152" y="250" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">PLAN</text>
+  <text x="645" y="250" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:spec</text>
+
+  <!-- L2 UNDERSTAND -->
+  <rect x="40" y="270" width="620" height="38" rx="6" fill="url(#l2)" opacity="0.9"/>
+  <text x="60" y="294" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L2</text>
+  <text x="178" y="294" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">UNDERSTAND</text>
+  <text x="645" y="294" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:graph</text>
+
+  <!-- L1 SETUP -->
+  <rect x="40" y="314" width="620" height="38" rx="6" fill="url(#l1)" opacity="0.9"/>
+  <text x="60" y="338" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L1</text>
+  <text x="155" y="338" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">SETUP</text>
+  <text x="645" y="338" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">/iron:init</text>
+
+  <!-- L0 DISCIPLINE -->
+  <rect x="40" y="358" width="620" height="38" rx="6" fill="url(#l0)" opacity="0.9"/>
+  <text x="60" y="382" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff" opacity="0.9">L0</text>
+  <text x="172" y="382" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="13" fill="#ffffff">DISCIPLINE</text>
+  <text x="645" y="382" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="12" fill="#e2e8f0" opacity="0.85">Always active</text>
+
+  <!-- Upward arrow on the left side indicating layer progression -->
+  <line x1="24" y1="385" x2="24" y2="55" stroke="#4a5568" stroke-width="1.5" opacity="0.5"/>
+  <polygon points="24,50 20,58 28,58" fill="#4a5568" opacity="0.5"/>
+</svg>

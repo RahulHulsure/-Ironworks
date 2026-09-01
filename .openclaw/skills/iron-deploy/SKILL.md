@@ -29,6 +29,8 @@ config files that work out of the box.
 /iron:deploy fly                     # Generate fly.toml
 /iron:deploy --env staging           # Generate for staging environment
 /iron:deploy --env production        # Generate for production (stricter defaults)
+/iron:deploy migrate <source>        # Migrate from another platform
+/iron:deploy preview                 # Generate CI config for PR preview environments
 ```
 
 ## What You Must Do When Invoked
@@ -126,6 +128,97 @@ Generate `railway.toml`:
 - Health check path
 - Resource sizing
 
+#### AWS Expanded (`/iron:deploy aws`)
+
+Generate comprehensive AWS deployment files:
+
+- **Dockerfile** — multi-stage build following the same pattern as `/iron:deploy docker`
+- **buildspec.yml** — for AWS CodeBuild, with install/pre_build/build/post_build phases
+- **appspec.yml** — for AWS CodeDeploy, with lifecycle hooks (BeforeInstall, AfterInstall, ApplicationStart, ValidateService)
+- **ECS task definition** — when ECS is the target, generate `task-definition.json` with:
+  - Container definitions with proper CPU/memory limits
+  - Log configuration pointing to CloudWatch Logs (`awslogs` driver)
+  - Secrets references via AWS Secrets Manager ARNs
+- **IAM least privilege recommendations** — list the minimum IAM permissions required for the generated deployment; output as a policy JSON template
+- **CloudWatch logging configuration** — log group names, retention policies, metric filters for error rates
+- **Auto-scaling configuration** — target tracking scaling policy with CPU/memory thresholds, min/max instance counts
+
+#### Fly.io Expanded (`/iron:deploy fly`)
+
+Generate `fly.toml` with full configuration:
+
+```toml
+app = "<app-name>"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  path = "/health"
+  timeout = "5s"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
+```
+
+Additional Fly.io config:
+- **Health checks** — HTTP checks on the health endpoint with grace period, interval, timeout
+- **Auto-scaling** — `min_machines_running` and `auto_stop_machines` / `auto_start_machines`
+- **Secrets management** — output a list of `fly secrets set KEY=value` commands for all env vars from .env.example
+- **Volume mounts** — when persistent storage is detected (SQLite, file uploads, local data), generate `[mounts]` section
+
+#### Migration (`/iron:deploy migrate <source>`)
+
+Migrate deployment config from another platform. Supported sources:
+
+| Source | Config file read |
+|--------|-----------------|
+| `heroku` | `Procfile`, `app.json`, `heroku.yml` |
+| `render` | `render.yaml` |
+| `railway` | `railway.toml` |
+| `fly` | `fly.toml` |
+| `docker-compose` | `docker-compose.yml` |
+| `aws-ecs` | `task-definition.json` |
+
+Process:
+1. **Analyze** — read the source platform's config and extract services, env vars, ports, health checks, volumes, scaling settings
+2. **Map** — translate each element to the target platform's equivalent
+3. **Identify unmigrable elements** — flag features that don't have a direct equivalent on the target (e.g., Heroku add-ons, Render cron jobs, Fly.io Machines API specifics)
+4. **Generate** — produce the new platform's config files
+5. **Migration checklist** — output a checklist of manual steps:
+   - DNS changes
+   - Environment variable re-creation
+   - Database migration/import
+   - SSL certificate provisioning
+   - CI/CD pipeline updates
+
+#### PR Preview Environments (`/iron:deploy preview`)
+
+Generate CI configuration for ephemeral preview environments on pull requests:
+
+- **DigitalOcean** — GitHub Actions workflow that creates a temporary App Platform app on PR open, comments the preview URL, and destroys it on PR merge/close using `doctl`
+- **Vercel** — vercel.json with Git integration (automatic preview on every push to PR branches)
+- **Railway** — GitHub Actions workflow that creates a preview environment via `railway up --environment pr-<number>`, tears down on PR close
+
+Generated config includes:
+- Unique URL per PR (e.g., `app-pr-42.example.com`)
+- Isolated database or shared staging DB (configurable)
+- Auto-destroy on PR merge or close
+- Comment on PR with preview URL and deployment status
+
 ### Step 3 — Environment Handling
 
 For `--env staging`:
@@ -140,6 +233,8 @@ For `--env production`:
 - Strict timeouts
 - Health checks required
 - Resource limits enforced
+- Approval gates: generate a CI step or GitHub Actions environment protection rule
+  that requires manual approval before production deployment proceeds
 
 ### Step 4 — Validate and Report
 

@@ -14,18 +14,18 @@ The following principles are **always on** (no command needed):
 
 | Command | What it does |
 |---------|-------------|
-| `ironworks:iron-init` | Bootstrap a project from zero |
-| `ironworks:iron-graph` | Map codebase dependencies |
-| `ironworks:iron-spec` | Spec-driven feature development |
-| `ironworks:iron-tdd` | Test-driven development cycle |
-| `ironworks:iron-debug` | Structured debugging |
-| `ironworks:iron-arch` | Architecture analysis |
-| `ironworks:iron-review` | Smart code review (4 axes) |
-| `ironworks:iron-audit` | Over-engineering audit |
-| `ironworks:iron-preflight` | Pre-deploy validation |
-| `ironworks:iron-deploy` | Deployment config generation |
-| `ironworks:iron-handoff` | Session handoff |
-| `ironworks:iron-help` | Command reference |
+| `/iron:init` | Bootstrap a project from zero |
+| `/iron:graph` | Map codebase dependencies |
+| `/iron:spec` | Spec-driven feature development |
+| `/iron:tdd` | Test-driven development cycle |
+| `/iron:debug` | Structured debugging |
+| `/iron:arch` | Architecture analysis |
+| `/iron:review` | Smart code review (2 parallel axes) |
+| `/iron:audit` | Over-engineering audit |
+| `/iron:preflight` | Pre-deploy validation |
+| `/iron:deploy` | Deployment config generation |
+| `/iron:handoff` | Session handoff |
+| `/iron:help` | Command reference |
 
 ## Quick Start
 
