@@ -1,50 +1,33 @@
 ---
 name: iron-arch
-description: "Architecture analysis: scan the codebase for structural problems — god files, circular dependencies, layer violations, shallow modules, missing boundaries — and produce an improvement plan with deep-module vocabulary."
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
+description: "Scan for structural problems and produce an improvement plan using deep-module vocabulary."
 ---
 
-# /iron:arch — Architecture Analysis
+# /iron:arch
 
 Scan the codebase for structural problems and produce an actionable improvement
-plan. This catches the slow-burn issues that make codebases harder to work with
-over time: god files, missing boundaries, circular dependencies, shallow modules,
-and abstraction leaks.
+plan.
 
 ## Vocabulary
 
 Use these terms precisely throughout every analysis. They come from John
-Ousterhout's *A Philosophy of Software Design* and are scale-agnostic — they
+Ousterhout's *A Philosophy of Software Design* and are scale-agnostic -- they
 apply to a function, a class, a package, or a service.
 
 - **Module:** Anything with an interface and an implementation. A function, a
-  class, a package, a microservice — the scale does not matter.
-- **Interface:** Everything a caller must know. Not just the type signature —
+  class, a package, a microservice -- the scale does not matter.
+- **Interface:** Everything a caller must know. Not just the type signature --
   also invariants, ordering constraints, error modes, and performance
-  characteristics. If the caller needs to know it to use the module correctly,
-  it is part of the interface.
+  characteristics.
 - **Depth:** The leverage at the interface. A deep module provides lots of
   behavior behind a small interface. A shallow module has a large interface
   relative to the behavior it hides.
 - **Seam:** A place where you can alter behavior without editing in that place.
   Seams exist at module boundaries where adapters can be swapped.
-- **Adapter:** A concrete thing that satisfies an interface at a seam. Two
-  adapters for the same seam (e.g., `StripeGateway` and `TestGateway`) make
-  the seam real and testable.
-- **Leverage:** What callers get from depth. A deep module lets callers do
-  powerful things with simple calls.
-- **Locality:** What maintainers get from depth. When a change concentrates in
-  one module instead of spreading across many callers, the module has good
-  locality.
-
-## When to Use
-
-- Codebase is getting harder to navigate
-- Changes in one file unexpectedly break others
-- New team members struggle to understand the structure
-- Before a major feature addition (is the foundation solid?)
-- Technical debt review
+- **Adapter:** A concrete thing that satisfies an interface at a seam (e.g.,
+  `StripeGateway` and `TestGateway` for the same seam).
+- **Leverage:** What callers get from depth.
+- **Locality:** What maintainers get from depth.
 
 ## Invocation
 
@@ -61,20 +44,20 @@ apply to a function, a class, a package, or a service.
 
 Read the project tree and identify:
 
-1. **Layers** — What layers exist? Common patterns:
+1. **Layers** -- what layers exist? Common patterns:
    - Routes/Controllers → Services → Models → Database
    - Pages → Components → Hooks → Utils → API
    - Handlers → Use Cases → Entities → Repositories
 
-2. **Boundaries** — Where are the module boundaries? Look for:
+2. **Boundaries** -- where are the module boundaries? Look for:
    - Directory structure (each dir = a module?)
    - Package/namespace organization
    - Index/barrel files that define public APIs
 
-3. **Entry points** — How does execution flow into the system?
+3. **Entry points** -- how does execution flow into the system?
    - HTTP routes, CLI commands, event handlers, cron jobs
 
-4. **Depth map** — For each major module, assess its depth:
+4. **Depth map** -- for each major module, assess its depth:
    - Interface size (how much must callers know?)
    - Implementation size (how much behavior is hidden?)
    - Ratio = depth. Flag modules where the interface is nearly as complex as the
@@ -86,24 +69,18 @@ Scan for these specific architectural problems:
 
 #### God Files
 Files with too many responsibilities or too many dependents.
-
-Signals:
 - File is > 500 lines and not a migration or generated code
 - File has > 10 incoming imports (everything depends on it)
 - File mixes concerns (DB queries + business logic + HTTP handling)
 
 #### Circular Dependencies
 A depends on B, B depends on A (directly or through a chain).
-
-Signals:
 - Explicit circular imports (some languages throw errors, others don't)
 - Implicit circular deps through shared mutable state
 - Two modules that import each other "for just one function"
 
 #### Layer Violations
 Code that skips layers or reaches in the wrong direction.
-
-Signals:
 - Routes importing from other routes
 - Models calling services
 - Database queries in route handlers (bypassing services)
@@ -111,30 +88,23 @@ Signals:
 
 #### Missing Boundaries
 Modules that expose their internals instead of a clean interface.
-
-Signals:
-- No index/barrel file — everything is imported by deep path
+- No index/barrel file -- everything is imported by deep path
 - Internal implementation details imported by external code
 - "Utility" files that are actually a dumping ground for unrelated functions
 
 #### Shallow Modules
 Modules with a large interface surface relative to the complexity they hide.
-
-Signals:
 - Wrapper classes that add no behavior (pass-through to another module)
 - Thin facades that expose every method of the underlying implementation
 - Modules whose interface has more symbols than their implementation
 - "Manager" or "Helper" classes that just delegate
 
 **The deletion test:** If deleting a module makes complexity reappear across N
-callers, it was earning its keep (it was deep). If deleting it just moves one
-line of code into each caller, it was shallow — the indirection cost more than
-the abstraction saved.
+callers, it was deep. If deleting it just moves one line into each caller, it
+was shallow -- the indirection cost more than the abstraction saved.
 
 #### Abstraction Leaks
 Low-level details exposed through high-level interfaces.
-
-Signals:
 - Database column names in API responses
 - ORM models used as API response types
 - SQL or query syntax visible in service layer
@@ -142,8 +112,6 @@ Signals:
 
 #### Dead Code
 Files, functions, or exports that nothing uses.
-
-Signals:
 - Exported functions with zero importers (excluding entry points)
 - Feature flags that are always on or always off
 - Commented-out code blocks
@@ -154,33 +122,21 @@ Signals:
 These 12 smells from Martin Fowler's *Refactoring* (Chapter 3) apply to every
 codebase regardless of language. Check for each during analysis:
 
-1. **Mysterious Name** — A function, variable, or class whose name does not
-   reveal its purpose. Renaming is the cheapest and highest-value refactoring.
-2. **Duplicated Code** — The same structure or logic in more than one place.
-   Extract and share.
-3. **Feature Envy** — A function that uses more data from another module than
-   from its own. It belongs in the other module.
-4. **Data Clumps** — Groups of data that always appear together (e.g., `startDate`
-   and `endDate`). Extract into a data class or struct.
-5. **Primitive Obsession** — Using bare strings/ints for domain concepts (email
-   addresses, currency amounts, IDs) instead of value objects.
-6. **Repeated Switches** — The same switch/case or if/else chain in multiple
-   places, switching on the same discriminator. Use polymorphism.
-7. **Shotgun Surgery** — A single change requires edits across many files.
-   The behavior lacks locality — it needs to be consolidated.
-8. **Divergent Change** — A single module changes for unrelated reasons. It has
-   multiple responsibilities and should be split.
-9. **Speculative Generality** — Abstractions, parameters, or extension points
-   that serve no current use case. Delete them.
-10. **Message Chains** — `a.getB().getC().getD()` — long chains of navigation.
-    The caller knows too much about the object graph.
-11. **Middle Man** — A class that delegates almost everything to another class.
-    Remove the middleman and let callers talk directly.
-12. **Refused Bequest** — A subclass that inherits methods or data it does not
-    use. Replace inheritance with composition.
+1. **Mysterious Name** -- rename to reveal purpose.
+2. **Duplicated Code** -- extract and share.
+3. **Feature Envy** -- move to the module whose data it uses.
+4. **Data Clumps** -- extract co-traveling data into a struct.
+5. **Primitive Obsession** -- replace bare primitives with value objects.
+6. **Repeated Switches** -- replace with polymorphism.
+7. **Shotgun Surgery** -- consolidate scattered behavior.
+8. **Divergent Change** -- split by responsibility.
+9. **Speculative Generality** -- delete unused abstractions.
+10. **Message Chains** -- hide the object graph.
+11. **Middle Man** -- remove and let callers talk directly.
+12. **Refused Bequest** -- replace inheritance with composition.
 
 When reporting smells, reference the specific smell name and the module where it
-occurs. Not every codebase will have all 12 — report only what is actually present.
+occurs. Report only what is actually present.
 
 ### Step 3 — Produce the Report
 
@@ -253,8 +209,8 @@ When `--fix` is specified:
 
 #### Design-It-Twice
 
-For each **Critical** issue, generate 2-3 radically different interface designs.
-Don't iterate on one idea — start from different first principles.
+For each **Critical** issue, generate 2-3 radically different interface designs
+from different first principles.
 
 ```
 DESIGN-IT-TWICE: Splitting core/utils.py
@@ -289,11 +245,9 @@ RECOMMENDATION: Design A
 ```
 
 Compare each design by:
-- **Depth** (leverage) — how much behavior does the interface hide?
-- **Locality** (change concentration) — does a change stay in one place?
-- **Seam placement** — where can behavior be swapped or tested?
-
-Give an opinionated recommendation with a clear rationale.
+- **Depth** (leverage) -- how much behavior does the interface hide?
+- **Locality** (change concentration) -- does a change stay in one place?
+- **Seam placement** -- where can behavior be swapped or tested?
 
 #### Generate Ironworks Spec Proposals
 
@@ -304,76 +258,26 @@ For each Critical issue, generate a spec proposal:
 ```
 
 This creates a change folder with requirements, design, and tasks for
-the refactoring — so it's tracked and reviewable, not a drive-by change.
+the refactoring -- so it's tracked and reviewable.
 
 #### Generate Architecture Decision Records (ADRs)
 
-For each proposal, create an ADR in `docs/adr/`:
+For each proposal, create an ADR in `docs/adr/`.
 
-File: `docs/adr/0001-split-utils-by-domain.md`
-
-```markdown
-# ADR 0001: Split core/utils.py by Domain
-
-## Status
-Proposed
-
-## Context
-core/utils.py has grown to 840 lines with 16 dependents. It mixes four
-unrelated concerns: auth helpers, date parsing, string formatting, and
-database utilities. Changes to any one concern risk breaking the others.
-This was flagged as a Critical issue by /iron:arch with smells: Divergent
-Change and Shotgun Surgery.
-
-## Decision
-Split utils.py into four domain-aligned modules: auth_utils.py,
-date_utils.py, string_utils.py, and db_utils.py. Each module exports
-only its domain-specific functions. The original utils.py is deleted.
-
-Design-It-Twice alternatives considered:
-- Capability-based grouping (security/formatting/data) — rejected because
-  it groups by technical capability rather than domain, making the interface
-  harder for callers to predict.
-- Inline elimination (move to callers) — rejected because 16 dependents
-  share these functions; inlining would create Duplicated Code.
-
-## Consequences
-- 16 files need import updates (mechanical, low risk)
-- Each new module is < 100 lines and has a single responsibility
-- Future auth changes concentrate in auth_utils.py (improved locality)
-- No shared module exceeds 5 exports (improved depth)
-```
-
-ADR numbering: scan `docs/adr/` for existing ADRs and use the next sequential
-number. If the directory does not exist, create it and start at 0001.
+ADR numbering: next sequential number in `docs/adr/` (create at 0001 if absent).
 
 ADR format:
 - **Title:** `NNNN-slug.md` where NNNN is zero-padded and slug is kebab-case
 - **Status:** `Proposed` (the user or team changes it to Accepted/Rejected/Superseded)
-- **Context:** Why this decision is needed — reference the /iron:arch findings
+- **Context:** Why this decision is needed -- reference the /iron:arch findings
 - **Decision:** What was decided, and what alternatives were considered
 - **Consequences:** What changes as a result, both positive and negative
 
 ## Rules
 
 - **Evidence over opinion.** Every finding must reference specific files and line numbers.
-- **Impact over count.** One god file causes more damage than ten dead imports.
-  Rank by actual impact on development velocity.
+- **Impact over count.** Rank by actual impact on development velocity.
 - **Don't flag style.** Architecture analysis is about structure, not formatting.
-- **Propose, don't just complain.** Every finding must have a concrete fix suggestion
-  with an estimate of effort and files affected.
-- **Respect existing patterns.** If the codebase consistently uses a pattern you
-  disagree with, flag it as a note, not a critical. Consistency beats preference.
-- **Score honestly.** Most codebases score C or D. An A means few issues and
-  strong boundaries. Don't grade on a curve.
-- **Use the vocabulary.** Report findings in terms of depth, leverage, locality,
-  seams, and adapters — not vague terms like "too complex" or "needs refactoring."
-- **Name the smells.** When a finding matches a Fowler smell, name it explicitly.
-  This gives the team a shared vocabulary for discussion.
-- **Design-It-Twice for Critical issues.** Never propose a single solution for a
-  Critical finding. Generate 2-3 radically different designs and compare them.
-- **ADRs capture the why.** When `--fix` generates proposals, always generate
-  ADRs. The ADR records why a design was chosen, not just what was chosen.
-- **Apply the deletion test.** Before flagging a "Middle Man" or "Shallow Module,"
-  ask: if this module were deleted, would complexity reappear across N callers?
-  If yes, it is earning its keep.
+- **Propose, don't just complain.** Every finding must have a concrete fix with effort and files affected.
+- **Respect existing patterns.** If the codebase consistently uses a pattern you disagree with, flag it as a note, not a critical.
+- **Score honestly.** Most codebases score C or D. Don't grade on a curve.

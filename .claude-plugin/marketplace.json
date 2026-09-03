@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ironworks",
-  "description": "Industrial-grade development pipeline — 12 skills across 7 layers, from bootstrap to deploy.",
+  "description": "Development pipeline -- 12 skills across 7 layers, from bootstrap to deploy.",
   "owner": {
     "name": "Rahul Hulsure",
     "url": "https://github.com/RahulHulsure"

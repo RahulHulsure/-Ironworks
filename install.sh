@@ -1,6 +1,6 @@
 #!/bin/sh
 # Ironworks — Cross-platform skill installer
-# https://github.com/rmyndharis/ironworks-skills
+# https://github.com/RahulHulsure/-Ironworks
 # License: MIT · (c) 2026 Rahul Hulsure
 #
 # Usage:

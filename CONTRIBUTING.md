@@ -1,7 +1,5 @@
 # Contributing to Ironworks
 
-Thanks for your interest in contributing to Ironworks! This document covers how to get involved.
-
 ## How to Contribute
 
 ### Report Issues
@@ -24,63 +22,26 @@ Thanks for your interest in contributing to Ironworks! This document covers how 
 
 ## Repo Structure
 
-```
-.claude-plugin/           # Plugin manifest
-  plugin.json             # Name, version, description, skill list
-  marketplace.json        # Marketplace metadata
-.openclaw/skills/         # All 12 skills
-  iron-init/SKILL.md      # L1 — Project bootstrap
-  iron-graph/SKILL.md     # L2 — Dependency mapping
-  iron-spec/SKILL.md      # L3 — Spec-driven dev
-  iron-tdd/SKILL.md       # L4 — TDD
-  iron-debug/SKILL.md     # L4 — Structured debugging
-  iron-arch/SKILL.md      # L4 — Architecture analysis
-  iron-review/SKILL.md    # L5 — Code review
-  iron-audit/SKILL.md     # L5 — Simplification audit
-  iron-preflight/SKILL.md # L6 — Deploy preflight
-  iron-deploy/SKILL.md    # L6 — Deployment config
-  iron-handoff/SKILL.md   # L∞ — Session handoff
-  iron-help/SKILL.md      # Command reference
-AGENTS.md                 # L0 — Always-on discipline rules
-docs/
-  CLAUDE-GLOBAL.md        # Drop-in ~/.claude/CLAUDE.md
-  CLAUDE-PROJECT-TEMPLATE.md  # Per-project CLAUDE.md template
-```
+- `.openclaw/skills/` -- all 12 SKILL.md files (one per skill)
+- `AGENTS.md` -- L0 always-on discipline rules
+- `docs/` -- CLAUDE-GLOBAL.md (drop-in), project template
+- `.claude-plugin/` -- plugin manifest and marketplace metadata
 
 ## Writing a SKILL.md
 
-Each skill file follows this structure:
+Each skill needs frontmatter (`name`, `description`, `homepage`, `license: MIT`) and these sections:
 
-```markdown
----
-name: iron-skillname
-description: "One-line description"
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
----
+- **Invocation** -- all command variants
+- **What You Must Do When Invoked** -- step-by-step agent instructions
+- **Rules** -- hard constraints that always apply
 
-# /iron:skillname — Human-Readable Title
-
-[What this skill does, when to use it]
-
-## Invocation
-
-[All command variants with comments]
-
-## What You Must Do When Invoked
-
-[Step-by-step instructions the agent follows]
-
-## Rules
-
-[Hard constraints that always apply]
-```
+See any existing `.openclaw/skills/*/SKILL.md` for a working example.
 
 ## Style Guide
 
 - **Be precise.** "Grep every caller of the changed function" beats "check for side effects."
 - **Be actionable.** Every instruction should tell the agent what to _do_, not what to _think about_.
-- **Use concrete examples.** Show the output format. Show the command. Show the file structure.
+- **Use concrete examples.** Show the output format, the command, the file structure.
 - **Keep it scannable.** Headers, bullet points, code blocks. Agents parse markdown, not essays.
 
 ## Code of Conduct

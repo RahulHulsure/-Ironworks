@@ -1,22 +1,13 @@
 ---
 name: iron-handoff
-description: "Compress the current session into a handoff document: what was done, what's in progress, what's blocked, key decisions made, and exact state of the codebase. For session continuity or team handoffs."
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
+description: "Compress session context into a structured handoff for continuity or team handoffs."
 ---
 
-# /iron:handoff — Session Handoff
+# /iron:handoff
 
 Compress the current session's context into a structured handoff document.
-Use it when ending a long session, switching to another agent, or briefing
-a team member on what happened.
-
-## When to Use
-
-- Session is getting long and you want to continue in a fresh one
-- Handing off work to another developer or agent
-- End of day — capture what's in progress for tomorrow
-- Before a context window compaction — preserve the important bits
+Use when ending a long session, switching to another agent, or briefing
+a team member.
 
 ## Invocation
 
@@ -30,40 +21,35 @@ a team member on what happened.
 
 ### Step 0 — Session Recall
 
-Before generating a handoff, check if `ironworks/handoffs/` exists and contains
-previous handoff files. If it does, read the most recent one to establish
-cross-session continuity. Note any accumulated lessons or recurring blockers
-from prior handoffs — these inform the current handoff's context.
+Check if `ironworks/handoffs/` contains previous handoff files. If so, read the
+most recent one for cross-session continuity. Note accumulated lessons or
+recurring blockers.
 
 ### Step 0.5 — Privacy Filter
 
-Before generating any handoff content, scan the session for sensitive data and
-ensure none appears in the output:
+Redact secrets before generating output:
 
-- **API keys**: patterns like `sk-`, `AKIA`, `ghp_`, `xoxb-`, `npm_`, `glpat-`, `dop_v1_`
-- **Bearer tokens and JWTs**: `Bearer ey...`, `eyJ...` base64 token patterns
-- **Passwords and connection strings**: URIs containing credentials (`://user:pass@`)
-- **Any raw secret values** seen during the session
+- **API keys**: `sk-`, `AKIA`, `ghp_`, `xoxb-`, `npm_`, `glpat-`, `dop_v1_`
+- **Tokens/JWTs**: `Bearer ey...`, `eyJ...` base64 patterns
+- **Credentials in URIs**: `://user:pass@`
 
-Replace all instances with `[REDACTED_SECRET]`. Never include raw secrets in
-handoff documents, even if they appeared in terminal output or config files
-during the session.
+Replace all with `[REDACTED_SECRET]`.
 
 ### Step 1 — Scan Session State
 
-Review everything that happened in this session:
+Review the session for:
 
-1. **Files modified** — what changed, what was created, what was deleted
-2. **Decisions made** — architectural choices, trade-offs, rejected alternatives
-3. **Ironworks state** — any specs proposed, tasks completed, reviews done
-4. **Git state** — committed changes, uncommitted changes, current branch
-5. **Open questions** — things that were deferred or need more information
+1. **Files modified** -- created, changed, deleted
+2. **Decisions made** -- architectural choices, trade-offs, rejected alternatives
+3. **Ironworks state** -- specs proposed, tasks completed, reviews done
+4. **Git state** -- committed/uncommitted changes, current branch
+5. **Open questions** -- deferred items or missing information
 
 ### Step 2 — Generate the Handoff
 
 #### For `--for-agent` (another Claude session)
 
-Produce a concise, machine-parseable document:
+Concise, machine-parseable document:
 
 ```markdown
 # Handoff — [Project Name] — [Date]
@@ -71,154 +57,98 @@ Produce a concise, machine-parseable document:
 ## State
 - **Branch:** feature/add-auth
 - **Last commit:** abc1234 "Add login endpoint and JWT generation"
-- **Uncommitted changes:** backend/app/services/auth.py (password hashing WIP)
+- **Uncommitted:** backend/app/services/auth.py (password hashing WIP)
 
 ## What Was Done
-1. Created ironworks spec: `ironworks/changes/add-auth/`
-2. Implemented tasks 1.1–2.3 of add-auth (8/12 done)
-3. Added User model, auth service, login/register endpoints
-4. All tests passing (14 tests, 0 failures)
+1. Created spec: `ironworks/changes/add-auth/`, implemented tasks 1.1–2.3 (8/12)
+2. Added User model, auth service, login/register endpoints, 14 tests passing
 
 ## What's In Progress
-- Task 2.4: Password reset flow
-  - Started: reset_password service function
-  - Blocked on: Email sending approach not decided
-  - Context: User asked about SendGrid vs SES, chose SES for cost
+- Task 2.4: Password reset -- blocked on email sending (chose SES over SendGrid)
 
 ## Key Decisions
-- JWT stored in httpOnly cookies, not localStorage (security)
-- Refresh tokens: yes, 7-day expiry, rotation on use
-- Password hashing: bcrypt via passlib (already installed)
+- JWT in httpOnly cookies (XSS prevention), bcrypt via passlib
+- Refresh tokens: 7-day expiry, rotation on use
 
 ## What's Left
-- [ ] 2.4 Password reset (email sending)
-- [ ] 3.1 Wire auth middleware to protected routes
-- [ ] 3.2 Add rate limiting to auth endpoints
-- [ ] 4.1 Error handling cleanup
-- [ ] Update CLAUDE.md with auth documentation
+- [ ] 2.4 Password reset · 3.1 Auth middleware · 3.2 Rate limiting
 
 ## Watch Out For
-- `backend/app/core/config.py` needs SECRET_KEY in production
-- Token expiry is 30min — user mentioned wanting configurable
-- No email service configured yet — blocks password reset
+- SECRET_KEY needed in production · Token expiry 30min (wants configurable)
+- No email service configured -- blocks password reset
 
 ## To Resume
-Run `/iron:spec show add-auth` to see current task state,
-then `/iron:spec apply add-auth` to continue from task 2.4.
+`/iron:spec show add-auth` → `/iron:spec apply add-auth` (continue from 2.4)
 ```
 
 #### For `--for-human` (team member)
 
-Produce a readable summary in natural language:
+Readable natural-language summary:
 
 ```markdown
 # Session Summary — [Project Name] — [Date]
 
 ## What I Did
-Built the authentication system for the TAX project. We now have:
-- User registration with email/password
-- Login that returns JWT tokens (httpOnly cookies)
-- Refresh token rotation with 7-day expiry
-- All endpoints tested (14 tests, all passing)
+Built authentication: registration, login (JWT in httpOnly cookies),
+refresh token rotation (7-day expiry). 14 tests, all passing.
 
 ## What's Not Done Yet
-Password reset is halfway done — the service function exists but
-we haven't set up email sending. Decision was made to use SES
-(cheaper than SendGrid at scale), but the integration isn't wired yet.
+Password reset halfway -- service exists, email sending not wired (using SES).
+Then: auth middleware on protected routes, rate limiting.
 
-After that, auth middleware needs to be applied to the protected
-routes, and rate limiting should go on the auth endpoints.
+## Decisions Made
+- **JWT in cookies** — prevents XSS theft
+- **Refresh tokens rotate on use** — limits theft window
 
-## Decisions That Were Made
-- **JWT in cookies, not localStorage** — prevents XSS theft
-- **Bcrypt via passlib** — was already in requirements.txt
-- **Refresh tokens rotate on use** — limits window if one is stolen
-
-## Things to Be Careful About
-1. SECRET_KEY must be set in production — it'll crash on startup
-   if missing (by design, so we don't run with empty keys)
-2. Token expiry is hardcoded to 30min — should be configurable
-3. No email service yet — password reset is blocked on this
+## Watch Out For
+1. SECRET_KEY must be set in production
+2. Token expiry hardcoded to 30min
+3. No email service -- blocks password reset
 
 ## Files Changed
-- `backend/app/models/user.py` — new
-- `backend/app/services/auth.py` — new
-- `backend/app/routes/auth.py` — new
-- `backend/app/schemas/auth.py` — new
-- `backend/app/core/security.py` — new (JWT helpers)
-- `backend/tests/services/test_auth.py` — new (14 tests)
+New: user.py, auth.py (service/routes/schemas), security.py, test_auth.py
 ```
 
 ### Step 3 — Add Lessons Learned
 
-After generating the main handoff content, append a lessons section capturing
-what was learned during the session:
+Append a lessons section:
 
 ```markdown
 ### Lessons
-- What worked: [e.g., "TDD approach caught the off-by-one before it hit staging"]
-- What didn't: [e.g., "Tried mocking the email service with unittest.mock — too brittle, switched to a fake SMTP server"]
-- What was surprising: [e.g., "The ORM generates 4 queries for what should be 1 join — eager loading didn't help, had to write raw SQL"]
+- What worked: [e.g., "TDD caught the off-by-one before staging"]
+- What didn't: [e.g., "unittest.mock too brittle, switched to fake SMTP"]
+- What surprised: [e.g., "ORM generates 4 queries for one join"]
 ```
 
-These lessons accumulate across sessions. If `ironworks/handoffs/` contains
-prior handoffs, read their lessons sections and carry forward any that remain
-relevant. Over time this creates a project-specific knowledge base of what
-works and what doesn't.
+Carry forward relevant lessons from prior handoffs in `ironworks/handoffs/`.
 
-### Step 4 — Add Suggested Next Skills
+### Step 4 — Suggest Next Steps
 
-Based on what was done in this session and what remains, recommend specific
-`/iron:*` commands for the next session to start with:
+Recommend specific `/iron:*` commands for the next session:
 
 ```markdown
 ### Suggested Next Steps
-- Start with `/iron:spec show add-auth` to see current task state
-- Run `/iron:review --staged` on the auth changes before merging
-- Run `/iron:preflight --platform aws` before deploying the auth feature
-- Consider `/iron:audit` on the services directory — three new files were added rapidly
+- `/iron:spec show add-auth` to see current task state
+- `/iron:review --staged` on auth changes before merging
+- `/iron:preflight --platform aws` before deploying
 ```
 
-Be specific — name the spec, the directory, the platform. Generic advice
-like "run review" is not useful.
+Be specific -- name the spec, directory, platform.
 
 ### Step 5 — Phase Boundary Decision
 
-At the end of the handoff, evaluate the current session state and recommend
-one of these actions (in priority order):
+Recommend: **Continue** (context fresh), **Handoff** (context long), **Subagent** (parallel side task), or **Compact** (continue after compaction). Append:
 
-1. **Continue** — if context is still fresh, the work is in flow, and the
-   context window is not near capacity. Say: "Context is fresh — continue working."
-2. **Handoff** — if context is getting long but work should continue in a
-   new session. This is the action being taken right now.
-3. **Subagent** — if a side task can run in parallel without blocking the
-   main work. Say: "Consider spawning a subagent for [task] while continuing [main work]."
-4. **Compact** — if context is too long but the session should continue
-   rather than starting fresh. Say: "Context is long but session should continue — compact before proceeding."
-
-Include the recommendation at the bottom of the handoff:
-
-```markdown
-### Session Transition
-Recommended action: **Handoff** — context is 80%+ consumed, 4 tasks remain.
-```
+`### Session Transition — Recommended: **Handoff** — context 80%+ consumed, 4 tasks remain.`
 
 ### Step 6 — Save the Handoff
 
-Save to `ironworks/handoffs/YYYY-MM-DD-HH.md` (create the directory if needed).
-
-Print the location and a one-liner: "Handoff saved. A new session can pick up
-with `/iron:spec show` or by reading the handoff at [path]."
+Save to `ironworks/handoffs/YYYY-MM-DD-HH.md`. Print the path and:
+"Handoff saved. Resume with `/iron:spec show` or by reading [path]."
 
 ## Rules
 
-- **Be specific, not vague.** "Worked on auth" is useless. "Implemented login
-  endpoint returning JWT in httpOnly cookie, 14 tests passing" is useful.
-- **Include file paths.** The next session or person needs to know WHERE things are.
-- **Capture decisions AND rationale.** "JWT in cookies" is half the story.
-  "JWT in cookies because localStorage is vulnerable to XSS" is the full story.
-- **Note blockers explicitly.** If something was deferred because of a dependency,
-  a question, or a missing piece, say so clearly.
-- **Don't include code.** The handoff is a map, not a copy. Reference files, don't paste them.
-- **Git state is critical.** Branch name, last commit, uncommitted changes — without
-  these, the next session starts confused.
+- **Be specific.** "Implemented login endpoint, 14 tests passing" not "Worked on auth."
+- **Decisions need rationale.** "JWT in cookies" is half; add "because XSS."
+- **No code.** Reference files, don't paste them.
+- **Git state is critical.** Branch, last commit, uncommitted changes.

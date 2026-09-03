@@ -42,7 +42,7 @@
   <text x="470" y="92" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="52" fill="#ffffff" letter-spacing="14">IRONWORKS</text>
 
   <!-- Subtitle -->
-  <text x="470" y="128" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="16" fill="#94a3b8">Industrial-grade development pipeline for AI coding agents</text>
+  <text x="470" y="128" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="16" fill="#94a3b8">Development pipeline for AI coding agents</text>
 
   <!-- Subtle decorative lines -->
   <line x1="220" y1="148" x2="720" y2="148" stroke="#4a5568" stroke-width="0.5" opacity="0.4"/>

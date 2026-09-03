@@ -1,12 +1,12 @@
 <!-- Ironworks: 12 production-grade skills for AI coding agents. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Gemini CLI, and 10+ more platforms. Open source MIT. -->
 
 <p align="center">
-  <img src="docs/banner.svg" alt="Ironworks — AI coding agent skills for Claude Code, Cursor, GitHub Copilot, Windsurf, and 16+ platforms" width="100%">
+  <img src="docs/banner.svg" alt="Ironworks -- AI coding agent skills for Claude Code, Cursor, GitHub Copilot, Windsurf, and 16+ platforms" width="100%">
 </p>
 
 <p align="center">
   <strong>AI coding agent skills for Claude Code, Cursor, GitHub Copilot, and your entire development pipeline.</strong><br>
-  12 production-grade skills across 7 layers — from project bootstrap to deploy preflight.
+  12 production-grade skills across 7 layers -- from project bootstrap to deploy preflight.
 </p>
 
 <p align="center">
@@ -48,19 +48,19 @@ cp platforms/copilot/copilot-instructions.md .github/copilot-instructions.md
 cp -r platforms/windsurf/rules/ .windsurf/rules/
 
 # OpenAI Codex
-cp AGENTS.md .   # Already works — Codex reads AGENTS.md natively
+cp AGENTS.md .   # Already works -- Codex reads AGENTS.md natively
 
 # Gemini CLI
 cp platforms/gemini/GEMINI.md .
 
 # Or use the universal installer (auto-detects your tools)
 git clone https://github.com/RahulHulsure/-Ironworks.git
-cd ironworks-skills
+cd -Ironworks
 ./install.sh                  # macOS/Linux
 .\install.ps1                 # Windows
 ```
 
-After installing, **Layer 0 is automatically active** — the discipline ladder, output priority, and security rules run every response. No command needed.
+After installing, **Layer 0 is automatically active** -- the discipline ladder, output priority and security rules run every response. No command needed.
 
 ```bash
 # Your first commands
@@ -70,16 +70,16 @@ After installing, **Layer 0 is automatically active** — the discipline ladder,
 /iron:spec propose <feature>  # Plan a feature before building
 ```
 
-> **16+ platforms supported** — see the [full platform list](#-supported-platforms) for Cline, Aider, Amazon Q, Kiro, Roo Code, Continue.dev, JetBrains Junie, Trae, Augment, Kilo Code, and Google Antigravity.
+> **16+ platforms supported** -- see the [full platform list](#-supported-platforms) for Cline, Aider, Amazon Q, Kiro, Roo Code, Continue.dev, JetBrains Junie, Trae, Augment, Kilo Code and Google Antigravity.
 
 ---
 
 ## ⚙️ The Layer Architecture
 
-Ironworks organizes skills into layers that compose naturally across the development lifecycle. Each layer builds on the ones below. You don't need every layer for every task — use what fits.
+Ironworks organizes skills into layers that compose naturally across the development lifecycle. Each layer builds on the ones below. You don't need every layer for every task -- use what fits.
 
 <p align="center">
-  <img src="docs/layers.svg" alt="Ironworks layer architecture — 7 layers organizing AI development pipeline skills for spec-driven development, TDD, code review, and deployment" width="700">
+  <img src="docs/layers.svg" alt="Ironworks layer architecture -- 7 layers organizing AI development pipeline skills for spec-driven development, TDD, code review and deployment" width="700">
 </p>
 
 ```
@@ -106,9 +106,9 @@ No command needed. These rules enforce themselves every response via [`AGENTS.md
 | **Priority Stack** | correct → clear → performant → brief |
 | **Output Priority** | Code first, explanation second. 3 lines max. |
 | **Discipline Ladder** | YAGNI → reuse → stdlib → platform → installed dep → one line → minimum code |
-| **Ironworks Marks** | `# ironworks:` comments on deliberate simplifications — name the ceiling and upgrade path |
+| **Ironworks Marks** | `# ironworks:` comments on deliberate simplifications -- name the ceiling and upgrade path |
 | **Bug Fix Rules** | Target root cause, grep all callers, fix the shared function once |
-| **Domain Language** | `CONTEXT.md` as shared glossary — challenge fuzzy terms |
+| **Domain Language** | `CONTEXT.md` as shared glossary -- challenge fuzzy terms |
 | **Never Compromise** | Input validation, error handling, parameterized queries, auth, accessibility, minimal tests |
 
 ---
@@ -126,10 +126,10 @@ One command to scaffold a production-ready project.
 **Detects 16+ stacks:** Next.js · React · FastAPI · Django · Go · Rust · Java · Elixir · Angular · Vue.js · SvelteKit · Express.js · Laravel · .NET/C# · Flutter/Dart · Scala
 
 **Generates:**
-- `CLAUDE.md` — project-specific agent instructions
-- `CONTEXT.md` — domain glossary with canonical terms
-- `docs/adr/0001-initial-stack-choice.md` — first Architecture Decision Record
-- `ironworks/` — specs and changes directory
+- `CLAUDE.md` -- project-specific agent instructions
+- `CONTEXT.md` -- domain glossary with canonical terms
+- `docs/adr/0001-initial-stack-choice.md` -- first Architecture Decision Record
+- `ironworks/` -- specs and changes directory
 - `.env.example` · CI config · `.gitignore`
 
 ---
@@ -153,10 +153,10 @@ Map the codebase before making changes. Every connection is confidence-scored.
 ```
 
 **Key features:**
-- 🔗 **Confidence scoring** — every edge tagged `EXTRACTED` (1.0), `INFERRED` (0.4–0.9), or `AMBIGUOUS` (0.1–0.3)
-- 🏘️ **Community detection** — files clustered into labeled subsystems with cohesion scores
-- ⚡ **God node flagging** — files with 10+ incoming connections bridging multiple communities
-- 🔍 **Surprise connections** — cross-community edges flagged for review
+- 🔗 **Confidence scoring** -- every edge tagged `EXTRACTED` (1.0), `INFERRED` (0.4-0.9), or `AMBIGUOUS` (0.1-0.3)
+- 🏘️ **Community detection** -- files clustered into labeled subsystems with cohesion scores
+- ⚡ **God node flagging** -- files with 10+ incoming connections bridging multiple communities
+- 🔍 **Surprise connections** -- cross-community edges flagged for review
 
 ---
 
@@ -179,11 +179,11 @@ Explore → Propose → Apply → Verify → Archive
 ```
 
 **Key features:**
-- 📋 **RFC 2119 keywords** — requirements use `SHALL`/`SHOULD`/`MAY`
-- 🧪 **GIVEN/WHEN/THEN scenarios** — explicit testable scenarios
-- 📝 **Delta spec markers** — `ADDED`/`MODIFIED`/`REMOVED` on archive
-- 📖 **CONTEXT.md integration** — domain terms captured during explore and propose
-- 📂 **Domain-based organization** — `ironworks/specs/auth/`, `ironworks/specs/payments/`
+- 📋 **RFC 2119 keywords** -- requirements use `SHALL`/`SHOULD`/`MAY`
+- 🧪 **GIVEN/WHEN/THEN scenarios** -- explicit testable scenarios
+- 📝 **Delta spec markers** -- `ADDED`/`MODIFIED`/`REMOVED` on archive
+- 📖 **CONTEXT.md integration** -- domain terms captured during explore and propose
+- 📂 **Domain-based organization** -- `ironworks/specs/auth/`, `ironworks/specs/payments/`
 
 ---
 
@@ -198,10 +198,10 @@ Red → Green → Refactor. Tests live at seams, never against internals.
 ```
 
 **Key features:**
-- 🔗 **Seam-based testing** — from Michael Feathers' *Working Effectively with Legacy Code*
-- ⚠️ **Anti-pattern detection** — implementation-coupled, tautological, horizontal slicing
-- 🎯 **Mocking rules** — mock only at system boundaries (APIs, DBs, time/randomness)
-- 📐 **Vertical slices** — one test → one implementation → repeat
+- 🔗 **Seam-based testing** -- from Michael Feathers' *Working Effectively with Legacy Code*
+- ⚠️ **Anti-pattern detection** -- implementation-coupled, tautological, horizontal slicing
+- 🎯 **Mocking rules** -- mock only at system boundaries (APIs, DBs, time/randomness)
+- 📐 **Vertical slices** -- one test, one implementation, repeat
 
 ---
 
@@ -242,10 +242,10 @@ Deep module vocabulary from Ousterhout. Fowler smell baseline. Design-It-Twice f
 ```
 
 **Key features:**
-- 📚 **Deep module vocabulary** — module, interface, depth, seam, adapter, leverage, locality (from *A Philosophy of Software Design*)
-- 👃 **Fowler smell baseline** — 12 smells from *Refactoring* ch.3 as heuristic checks
-- 🔀 **Design-It-Twice** — 2–3 radically different designs for Critical issues
-- 📄 **ADR generation** — Architecture Decision Records in `docs/adr/`
+- 📚 **Deep module vocabulary** -- module, interface, depth, seam, adapter, leverage, locality (from *A Philosophy of Software Design*)
+- 👃 **Fowler smell baseline** -- 12 smells from *Refactoring* ch.3 as heuristic checks
+- 🔀 **Design-It-Twice** -- 2-3 radically different designs for Critical issues
+- 📄 **ADR generation** -- Architecture Decision Records in `docs/adr/`
 
 ---
 
@@ -334,17 +334,17 @@ Privacy-filtered session compression with cross-session continuity.
 ```
 
 **Key features:**
-- 🔄 **Session recall** — reads most recent handoff from `ironworks/handoffs/` at session start
-- 🔒 **Privacy filtering** — redacts API keys (`sk-`, `AKIA`, `ghp_`, `xoxb-`), tokens, JWTs, passwords
-- 📝 **Lessons learned** — captures what worked, what didn't, what was surprising
-- 🧭 **Suggested next skills** — recommends `/iron:*` commands for the next session
-- 🔀 **Phase boundary decisions** — Continue / Handoff / Subagent / Compact
+- 🔄 **Session recall** -- reads most recent handoff from `ironworks/handoffs/` at session start
+- 🔒 **Privacy filtering** -- redacts API keys (`sk-`, `AKIA`, `ghp_`, `xoxb-`), tokens, JWTs, passwords
+- 📝 **Lessons learned** -- captures what worked, what didn't, what was surprising
+- 🧭 **Suggested next skills** -- recommends `/iron:*` commands for the next session
+- 🔀 **Phase boundary decisions** -- Continue / Handoff / Subagent / Compact
 
 ---
 
 ## 🖥️ Supported Platforms
 
-Ironworks works with **16+ AI coding tools**. The core skills are platform-agnostic — each platform gets adapter files in its native format.
+Ironworks works with **16+ AI coding tools**. The core skills are platform-agnostic -- each platform gets adapter files in its native format.
 
 | Platform | Type | Install |
 |----------|------|---------|
@@ -352,7 +352,7 @@ Ironworks works with **16+ AI coding tools**. The core skills are platform-agnos
 | **Cursor** | Rules (`.mdc`) | Copy `platforms/cursor/rules/` → `.cursor/rules/` |
 | **GitHub Copilot** | Instructions | Copy `platforms/copilot/` → `.github/` |
 | **Windsurf / Devin** | Rules | Copy `platforms/windsurf/rules/` → `.windsurf/rules/` |
-| **OpenAI Codex** | AGENTS.md | Built-in — `AGENTS.md` in repo root |
+| **OpenAI Codex** | AGENTS.md | Built-in -- `AGENTS.md` in repo root |
 | **Cline** | Rules | Copy `platforms/cline/` → `.clinerules/` |
 | **Gemini CLI** | GEMINI.md | Copy `platforms/gemini/GEMINI.md` → project root |
 | **Aider** | CONVENTIONS.md | Copy `platforms/aider/CONVENTIONS.md` → project root |
@@ -366,7 +366,7 @@ Ironworks works with **16+ AI coding tools**. The core skills are platform-agnos
 | **Kilo Code** | Rules | Copy `platforms/kilo/rules/` → `.kilo/rules/` |
 | **Google Antigravity** | Skills | Copy `platforms/antigravity/skills/` → `.agent/skills/` |
 
-> **Cross-tool note:** Many platforms (Codex, Amp, Devin, Augment, Kilo, Continue, Aider, Trae) also read `AGENTS.md` natively. The repo ships one at the root — it works out of the box for all of these.
+> **Cross-tool note:** Many platforms (Codex, Amp, Devin, Augment, Kilo, Continue, Aider, Trae) also read `AGENTS.md` natively. The repo ships one at the root -- it works out of the box for all of these.
 
 See [`platforms/README.md`](platforms/README.md) for detailed per-platform setup instructions.
 
@@ -423,7 +423,7 @@ See [`platforms/README.md`](platforms/README.md) for detailed per-platform setup
 
 ## 🌳 Origins
 
-Ironworks synthesizes concepts from 7 open-source tools into one original codebase. Every idea was studied, combined, and rewritten — not forked.
+Ironworks synthesizes concepts from 7 open-source tools into one original codebase. Every idea was studied, combined, and rewritten -- not forked.
 
 | Source | What we took | Where it went |
 |--------|-------------|---------------|
@@ -432,7 +432,7 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 | **[Matt Pocock Skills](https://github.com/mattpocock/skills)** | Seam-based testing, domain modeling, 2-axis review, Fowler smells, deep modules, Design-It-Twice, feedback loops | L4, L5 |
 | **[Graphify](https://github.com/Graphify-Labs/graphify)** | Confidence scoring, community detection, DFS/BFS queries, watch mode, incremental rebuild | L2 |
 | **[AgentMemory](https://github.com/rohitg00/agentmemory)** | Privacy filtering, lessons learned, session recall, phase boundary decisions | L∞ |
-| **[Antigravity](https://github.com/RahulHulsure/antigravity-skills)** | 16+ stack detection, bundle architecture, comprehensive framework coverage | L1 |
+| **[Antigravity](https://github.com/RahulHulsure/-Ironworks)** | 16+ stack detection, bundle architecture, comprehensive framework coverage | L1 |
 | **[DO App Platform](https://github.com/digitalocean-labs/do-app-platform-skills)** | Platform migration, PR previews, multi-env approval gates, 6-platform deploy | L6 |
 
 ---
@@ -440,7 +440,7 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 ## 📂 Repo Structure
 
 ```
-ironworks-skills/
+-Ironworks/
 ├── .claude-plugin/              # Claude Code plugin manifest
 ├── .openclaw/skills/            # Core skill definitions (12 skills)
 │   ├── iron-init/SKILL.md       # L1 — Project bootstrap
@@ -493,10 +493,10 @@ ironworks-skills/
 
 Ironworks runs on **16+ AI coding platforms** and complements other tools in the ecosystem:
 
-- **[Graphify](https://github.com/Graphify-Labs/graphify)** — full knowledge graphs for deep codebase understanding (Layer 2 complement)
-- **[Ponytail](https://github.com/nicholasgriffintn/ponytail)** — YAGNI-first coding discipline (Layer 0 shares the same philosophy)
-- **[AgentMemory](https://github.com/rohitg00/agentmemory)** — persistent cross-session memory (Layer ∞ complement)
-- **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** — the spec-driven methodology that inspired Layer 3
+- **[Graphify](https://github.com/Graphify-Labs/graphify)** -- full knowledge graphs for deep codebase understanding (Layer 2 complement)
+- **[Ponytail](https://github.com/nicholasgriffintn/ponytail)** -- YAGNI-first coding discipline (Layer 0 shares the same philosophy)
+- **[AgentMemory](https://github.com/rohitg00/agentmemory)** -- persistent cross-session memory (Layer ∞ complement)
+- **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** -- the spec-driven methodology that inspired Layer 3
 
 ---
 
@@ -516,13 +516,13 @@ Ironworks runs on **16+ AI coding platforms** and complements other tools in the
 
 ## 🗺️ Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for what's coming next — MCP integration, new skills, and more.
+See [ROADMAP.md](ROADMAP.md) for what's coming next -- MCP integration, new skills and more.
 
 ---
 
 ## 📄 License
 
-MIT — use it, modify it, share it. See [LICENSE](LICENSE).
+MIT -- use it, modify it, share it. See [LICENSE](LICENSE).
 
 ---
 

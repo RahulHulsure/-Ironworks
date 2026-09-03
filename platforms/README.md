@@ -100,7 +100,7 @@ Copilot reads `copilot-instructions.md` from the `.github/` directory.
 cp platforms/ironworks-portable.md YOUR_PROJECT/.github/copilot-instructions.md
 ```
 
-**File format:** Markdown. No global install — Copilot instructions are always
+**File format:** Markdown. No global install -- Copilot instructions are always
 per-repository.
 
 ### Windsurf
@@ -288,8 +288,8 @@ a slash command (e.g., `/iron:tdd`). The agent can invoke any skill by name.
 
 Platforms that support only a rules/instructions file get the **portable rules
 document** (`platforms/ironworks-portable.md`). This contains the full L0
-discipline layer — the priority stack, discipline ladder, security rules, code
-standards, and scalability defaults — condensed into a single file the platform
+discipline layer -- the priority stack, discipline ladder, security rules, code
+standards and scalability defaults -- condensed into a single file the platform
 injects into every response.
 
 Platform-specific adapters (e.g., Cursor's `.mdc` format) are stored in
@@ -321,7 +321,7 @@ Platform-specific adapters (e.g., Cursor's `.mdc` format) are stored in
 expects. Most platforms are case-sensitive about filenames.
 
 **Conflicts with existing rules?** The Ironworks rules are additive. They do
-not override platform defaults — they extend them. If you have existing rules,
+not override platform defaults -- they extend them. If you have existing rules,
 the Ironworks file can coexist alongside them.
 
 **Uninstalling:** Run `./install.sh --uninstall` (or `.\install.ps1 -Uninstall`)

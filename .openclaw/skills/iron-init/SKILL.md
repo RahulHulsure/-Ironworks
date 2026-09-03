@@ -1,21 +1,9 @@
 ---
 name: iron-init
-description: "Bootstrap any project from zero to production-ready: folder structure, CLAUDE.md, git, specs directory, CI template, env config. One command, fully scaffolded."
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
+description: "Bootstrap any project from zero to production-ready in one pass."
 ---
 
-# /iron:init — Project Bootstrapper
-
-Bootstrap a project from zero to production-ready in one pass. This is not a
-template dump — it reads your intent, asks the minimum questions, and generates
-a structure tailored to your stack.
-
-## When to Use
-
-- Starting a new project from scratch
-- Joining a project that has no structure (no CLAUDE.md, no specs, no CI)
-- Converting a prototype into a production project
+# /iron:init
 
 ## Invocation
 
@@ -58,8 +46,7 @@ If the directory is empty or `--stack` was passed, proceed directly.
 
 ### Step 2 — Create the Structure
 
-Generate the project skeleton. The exact structure depends on the detected
-stack, but every project gets these:
+Generate skeleton. Every project includes:
 
 ```
 project-root/
@@ -147,8 +134,7 @@ For **minimal** (`--minimal`):
 
 ### Step 3 — Generate CLAUDE.md and CONTEXT.md
 
-The CLAUDE.md is the most important output. It must be specific to THIS project,
-not a generic template. Include:
+CLAUDE.md must be project-specific. Include:
 
 ```markdown
 # [Project Name]
@@ -185,7 +171,7 @@ not a generic template. Include:
 - Pre-deploy check: `/iron:preflight`
 ```
 
-**Also generate a starter `CONTEXT.md`** with the project name and a placeholder glossary:
+**Generate starter `CONTEXT.md`** with project name and placeholder glossary:
 
 ```markdown
 # [Project Name] — Domain Glossary
@@ -213,8 +199,7 @@ User: A person with an account in the system. _Avoid_: customer, client, member 
 
 ### Step 4 — Generate .env.example
 
-List every environment variable the project will need. Include descriptions
-and example values (never real secrets):
+List all required env vars with descriptions and example values (never real secrets):
 
 ```env
 # Database
@@ -236,7 +221,7 @@ Create `.github/workflows/ci.yml` appropriate to the stack:
 - **Node**: Install deps, run `eslint`, run `vitest` or `jest`, type-check with `tsc --noEmit`
 - **Both**: Matrix job running each independently
 
-The CI should be minimal but real — it must actually pass on the generated code.
+CI must pass on the generated code.
 
 ### Step 6 — Initialize Git
 
@@ -266,8 +251,6 @@ Print a concise summary:
 
 ## Rules
 
-- **Never overwrite existing files** without asking. If CLAUDE.md exists, offer to merge.
+- **If CLAUDE.md exists**, offer to merge rather than overwrite.
 - **No placeholder code.** Every generated file must be valid and runnable.
 - **No unnecessary dependencies.** The scaffold uses only what the stack provides.
-- **The scaffold must pass its own CI.** Lint, test, type-check all pass on day one.
-- **Ask before generating** if auto-detection is ambiguous. Asking is cheaper than re-scaffolding.

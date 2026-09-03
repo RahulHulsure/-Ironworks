@@ -6,7 +6,7 @@
 
 # Ironworks — AI Development Pipeline
 
-> Industrial-grade development rules for AI coding agents.
+> Development rules for AI coding agents.
 > 12 skills · 7 layers · 60+ commands
 
 Repository: https://github.com/RahulHulsure/-Ironworks
@@ -20,10 +20,10 @@ These rules are active on EVERY response. Non-negotiable.
 
 ### Priority Stack
 
-1. **Correct** — does what the spec says, handles edge cases, fails safely
-2. **Clear** — a new team member can read it without a walkthrough
-3. **Performant** — no unnecessary work, no N+1, no blocking calls where async fits
-4. **Brief** — shortest code that satisfies 1–3
+1. **Correct** -- does what the spec says, handles edge cases, fails safely
+2. **Clear** -- a new team member can read it without a walkthrough
+3. **Performant** -- no unnecessary work, no N+1, no blocking calls where async fits
+4. **Brief** -- shortest code that satisfies 1–3
 
 ### Output Priority
 
@@ -54,16 +54,16 @@ Deliberate simplifications get `# ironworks:` comments naming the ceiling and up
 
 ### Never Compromise
 
-These survive every simplification — no exceptions:
+These survive every simplification -- no exceptions:
 
 - Input validation at trust boundaries
 - Error handling on every external call (API, DB, file, network)
-- Parameterized queries — never concatenated SQL
+- Parameterized queries -- never concatenated SQL
 - Auth/authz on protected operations
 - Secrets in env vars, never in code
-- Typed errors with actionable messages — never swallow exceptions
+- Typed errors with actionable messages -- never swallow exceptions
 - A minimal test for non-trivial logic
-- Understanding the problem — trace first, shortcut the solution, never the reading
+- Understanding the problem -- trace first, shortcut the solution, never the reading
 
 ### Bug Fix Rules
 
@@ -73,7 +73,7 @@ These survive every simplification — no exceptions:
 
 ### Code Standards
 
-- Follow existing patterns — read before writing
+- Follow existing patterns -- read before writing
 - Flat > nested. Explicit > implicit. One file, one thing
 - Extract at third repetition, not first. Deletion before addition
 - Atomic commits, imperative messages, never force push shared branches
@@ -128,7 +128,7 @@ Red → Green → Refactor. No exceptions.
 
 **Steps:** Write failing test → Write minimum code to pass → Refactor (only when green) → Repeat. Vertical slices (one feature end-to-end, not horizontal layers).
 
-**Seam-based testing (Feathers):** Find seams — constructor injection, interface boundaries, config switches. Test through seams to avoid over-mocking.
+**Seam-based testing (Feathers):** Find seams -- constructor injection, interface boundaries, config switches. Test through seams to avoid over-mocking.
 
 **Anti-patterns to reject:** Implementation-coupled tests, tautological tests, horizontal slicing, mock internals (mock boundaries only).
 
@@ -178,7 +178,7 @@ Two parallel axes run independently:
 
 Find complexity to eliminate. Scans for: ironworks marks (deliberate debts), shallow modules (small interface hiding nothing), dead code, unnecessary abstractions, over-configuration.
 
-**Subcommand:** `debt` — harvest all `# ironworks:` marks into a prioritized debt ledger sorted by blast radius.
+**Subcommand:** `debt` -- harvest all `# ironworks:` marks into a prioritized debt ledger sorted by blast radius.
 
 **Rules:** Only flag what you can prove. If uncertain, tag "investigate" not "fix." `--fix` auto-fixes safe deletions.
 

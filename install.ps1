@@ -4,7 +4,7 @@
 
 .DESCRIPTION
     Installs Ironworks skills and rules into AI coding platforms.
-    https://github.com/rmyndharis/ironworks-skills
+    https://github.com/RahulHulsure/-Ironworks
     License: MIT - (c) 2026 Rahul Hulsure
 
 .PARAMETER Platform

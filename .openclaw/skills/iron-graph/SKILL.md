@@ -1,27 +1,12 @@
 ---
 name: iron-graph
-description: "Map a codebase into a dependency graph: modules, imports, exports, cross-file connections, god files, orphaned code, community detection, and confidence-scored edges. Understand before you build."
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
+description: "Map codebase dependencies, hotspots, orphans, communities, and circular deps with confidence-scored edges."
 ---
 
-# /iron:graph — Codebase Dependency Map
+# /iron:graph
 
-Map the codebase before making changes. This skill reads the project structure,
-traces imports and exports, identifies modules and their connections, detects
-communities of related files, and produces a queryable dependency report with
-confidence-scored edges.
-
-This is not a full knowledge graph engine — it's a focused dependency mapper
-that gives you the understanding you need before touching unfamiliar code.
-
-## When to Use
-
-- Joining an existing project — understand what connects to what
-- Before a major refactor — find all callers and dependents
-- Before adding a feature — understand where it fits
-- Debugging — trace how data flows through the system
-- Finding subsystems — identify natural boundaries in the codebase
+Map the codebase before making changes. Traces imports/exports, detects
+communities, and produces a dependency report with confidence-scored edges.
 
 ## Invocation
 
@@ -42,8 +27,8 @@ that gives you the understanding you need before touching unfamiliar code.
 
 ## Edge Confidence Scoring
 
-Every connection in the graph must carry a confidence tag. Never omit an
-uncertain edge — flag it instead.
+Every connection must carry a confidence tag. Never omit an uncertain
+edge -- flag it instead.
 
 | Tag | Confidence | Meaning |
 |---|---|---|
@@ -51,26 +36,15 @@ uncertain edge — flag it instead.
 | **INFERRED** | 0.4–0.9 | Derived through resolution: shared DB table, event bus, naming convention, API call chain, env var dependency |
 | **AMBIGUOUS** | 0.1–0.3 | Uncertain connection, flagged for human review: possible shared state, naming similarity, indirect coupling |
 
-- All non-EXTRACTED edges must display their confidence score.
-- Never hide uncertain edges. Mark them AMBIGUOUS and include them.
-- In `--deep` mode, lower the threshold for adding INFERRED edges (accept
-  weaker signals: naming patterns, co-change frequency, similar parameter types).
-
 ## Community Detection
 
-Group related files into communities (subsystems) using import clustering:
+Group related files into communities using import clustering:
 
-1. **Cluster by imports.** Files that import heavily from each other belong to
-   the same community. Use the import graph to find tightly connected clusters.
-2. **Label each community** with a 2–5 word name describing its purpose
-   (e.g., "Auth & Session Management", "Payment Processing", "UI Layout System").
-3. **Report cohesion** within each community: what percentage of a community's
-   imports are internal vs. external.
-4. **Identify cross-community connections.** Flag surprising edges — connections
-   that cross community boundaries unexpectedly. These are often coupling problems
-   or hidden shared dependencies.
-5. **Identify god nodes.** Files with 10+ incoming connections that bridge
-   multiple communities are god nodes. They are high-risk targets for refactoring.
+1. **Cluster by imports.** Files importing heavily from each other = same community.
+2. **Label each community** with a 2–5 word purpose name.
+3. **Report cohesion** -- percentage of internal vs. external imports.
+4. **Flag cross-community edges** crossing boundaries unexpectedly.
+5. **Identify god nodes** -- 10+ incoming connections bridging multiple communities.
 
 ## What You Must Do When Invoked
 
@@ -86,24 +60,16 @@ Group related files into communities (subsystems) using import clustering:
    - What it imports (from other project files, from dependencies)
    - Its role: model, route, service, component, utility, config, test
 
-3. **Build the connection map.** For each connection between files:
-   - Tag as **EXTRACTED** (confidence 1.0) if it is an explicit import/export.
-   - Tag as **INFERRED** (confidence 0.4–0.9) if derived through resolution:
-     shared DB table, event bus, API call chain, env var dependency.
-   - Tag as **AMBIGUOUS** (confidence 0.1–0.3) if uncertain: possible coupling
-     through naming, co-location, or unclear shared state. Flag for human review.
-   - Note the direction: A depends on B, or bidirectional.
+3. **Build the connection map.** Tag each edge per the confidence table above.
+   Note direction: A depends on B, or bidirectional.
 
-4. **Detect communities.** Cluster files into subsystems based on import density.
-   Label each community. Compute cohesion scores.
+4. **Detect communities** (see Community Detection above).
 
 5. **Identify patterns:**
-   - **God nodes** — files with 10+ incoming connections that bridge multiple
-     communities (high coupling risk)
-   - **Orphaned files** — files nothing imports (dead code candidates)
-   - **Circular deps** — A → B → C → A chains
-   - **Layer violations** — routes importing from other routes, models calling services
-   - **Surprise connections** — edges that cross community boundaries unexpectedly
+   - **Orphaned files** -- files nothing imports (dead code candidates)
+   - **Circular deps** -- A → B → C → A chains
+   - **Layer violations** -- routes importing from other routes, models calling services
+   - **Surprise connections** -- edges crossing community boundaries unexpectedly
 
 6. **Produce the report.** Output as structured text:
 
@@ -159,36 +125,24 @@ SUGGESTED QUESTIONS
   → "Which community has the lowest cohesion and why?"
 ```
 
-7. **Save the report** to `ironworks/graph-report.md` for future reference.
+7. **Save the report** to `ironworks/graph-report.md`.
 
-8. **Save the manifest** to `ironworks/graph-manifest.json` — a record of every
-   file scanned with its last-modified timestamp. Used by `--update` for
-   incremental rebuilds.
+8. **Save the manifest** to `ironworks/graph-manifest.json` -- file timestamps
+   for `--update` incremental rebuilds.
 
 ### For `/iron:graph query "<question>"`
 
-1. If `ironworks/graph-report.md` exists, read it for context.
-2. Otherwise, run a targeted scan of the files relevant to the question.
-3. Trace the connections related to the question:
-   - Follow imports/exports
-   - Check for shared database tables
-   - Look for API call chains
-   - Identify event-driven connections
-4. **Default traversal is BFS** (broad, nearest neighbors first, depth 3).
-   This finds the most directly related files quickly.
-5. If `--dfs` is specified, use **DFS traversal** (follows specific paths deeply,
-   depth 6). Better for tracing a single flow end-to-end.
-6. If `--budget N` is specified, cap the response at N tokens. Prioritize the
-   most relevant connections and truncate the rest with a note.
-7. Answer the question with specific file references and connection paths.
-   Show confidence scores on all non-EXTRACTED edges.
+1. Read `ironworks/graph-report.md` if it exists; otherwise targeted scan.
+2. Trace connections: imports, shared DB tables, API chains, events.
+3. **Default: BFS** (broad, depth 3). With `--dfs`: DFS (deep, depth 6).
+4. With `--budget N`, cap at N tokens and truncate with a note.
+5. Answer with file references and confidence scores on non-EXTRACTED edges.
 
 ### For `/iron:graph deps <file>`
 
-1. Read the specified file.
-2. List everything it imports (with file paths).
-3. Search the codebase for everything that imports from it.
-4. Show the dependency tree with confidence tags:
+1. Read the file. List what it imports (with file paths).
+2. Search the codebase for everything that imports from it.
+3. Show the dependency tree with confidence tags:
 
 ```
 backend/app/services/auth.py
@@ -206,11 +160,9 @@ backend/app/services/auth.py
 
 ### For `/iron:graph path "A" "B"`
 
-1. Find the shortest path between two concepts or files in the dependency graph.
-2. If A and B are file paths, trace the import chain between them.
-3. If A and B are concept names (e.g., "authentication", "payment"), resolve them
-   to the most relevant files first, then find the path.
-4. Show every hop with its confidence tag:
+1. Find the shortest path between two concepts or files.
+2. If file paths, trace the import chain. If concept names, resolve to files first.
+3. Show every hop with its confidence tag:
 
 ```
 PATH: auth.py → user.py → payment.py
@@ -219,63 +171,44 @@ PATH: auth.py → user.py → payment.py
   Total hops: 2 · Lowest confidence: 0.6
 ```
 
-5. If no path exists, say so. If multiple paths exist, show the shortest and
-   mention alternatives.
+4. If no path exists, say so. If multiple, show shortest and note alternatives.
 
 ### For `/iron:graph hotspots`
 
-List the top 10 most-connected files with their connection counts and
-a brief note on risk: "Changing this file affects N other files."
-Flag god nodes: files with 10+ incoming connections that bridge multiple
-communities. For each god node, list which communities it bridges.
+List the top 10 most-connected files with connection counts and
+risk note: "Changing this file affects N other files."
 
 ### For `/iron:graph orphans`
 
-List files that nothing imports. For each, note:
-- Is it a legitimate entry point (main.py, index.ts, test file)?
-- Or is it likely dead code?
-- Suggest: keep, investigate, or delete.
+List unimported files. Note if each is a legitimate entry point or dead code.
+Suggest: keep, investigate, or delete.
 
 ### For `/iron:graph --deep`
 
-Run the full map with aggressive inference mode:
-- Lower the threshold for INFERRED edges (accept weaker signals).
-- Look for: naming convention matches, co-change patterns, similar parameter
-  types, shared constants, parallel directory structures.
-- All additional edges are tagged INFERRED with their confidence score.
-- Never tag an aggressively inferred edge as EXTRACTED.
+Full map with aggressive inference. Lower INFERRED threshold, look for naming
+matches, co-change patterns, similar types, shared constants. Tag all as
+INFERRED (never EXTRACTED).
 
 ### For `/iron:graph --watch`
 
-Auto-rebuild the graph when files change:
-- **Code-only changes** (source files): free rescan — update the graph
-  automatically without user confirmation.
-- **Doc changes** (markdown, config, specs): flag for full update. Notify the
-  user: "Documentation changed — run `/iron:graph --update` to rebuild."
-- Uses the manifest (`ironworks/graph-manifest.json`) to detect changes.
+Auto-rebuild on file changes. Code changes rescan automatically; doc changes
+prompt user to run `--update`. Uses `ironworks/graph-manifest.json`.
 
 ### For `/iron:graph --update`
 
-Incremental rebuild — only re-scan files that changed since the last build:
-1. Read `ironworks/graph-manifest.json` for the previous scan state.
-2. Compare file timestamps. Identify added, modified, and deleted files.
-3. Re-scan only the changed files and update their edges.
-4. Recompute communities if the changes affect community membership.
+Incremental rebuild -- only re-scan changed files:
+1. Read `ironworks/graph-manifest.json` for previous scan state.
+2. Compare timestamps. Identify added, modified, deleted files.
+3. Re-scan changed files and update edges.
+4. Recompute communities if changes affect membership.
 5. Update `ironworks/graph-report.md` and `ironworks/graph-manifest.json`.
-6. Report what changed: "Updated 3 files, added 2 edges, removed 1 edge."
+6. Report: "Updated 3 files, added 2 edges, removed 1 edge."
 
 ## Rules
 
-- **Read, don't guess.** Every EXTRACTED connection must come from actual imports, not inference.
-- **Never omit uncertain edges.** If a connection is uncertain, tag it AMBIGUOUS
-  with a confidence score (0.1–0.3). Hidden edges are worse than flagged ones.
-- **Show confidence scores** on all non-EXTRACTED edges. EXTRACTED edges are
-  confidence 1.0 by definition and don't need a score displayed.
-- **Mark uncertainty.** If a connection is indirect (shared DB table, event bus),
-  label it INFERRED with its confidence score.
+- **Read, don't guess.** Every EXTRACTED connection must come from actual imports.
 - **Be actionable.** "14 files depend on database.py" is useful. A raw adjacency list is not.
-- **Don't read every line.** Scan imports, exports, and function signatures. Skip implementations.
-- **Update on re-run.** If `ironworks/graph-report.md` exists, regenerate it — don't append.
-- **Stay focused.** This is a dependency map, not a full codebase review. Don't flag bugs.
-- **Communities are descriptive.** Label communities with what they do, not where they are.
-  "Auth & Session Management" is good. "backend/app/services/" is not a community name.
+- **Don't read every line.** Scan imports, exports, signatures. Skip implementations.
+- **Update on re-run.** If `ironworks/graph-report.md` exists, regenerate -- don't append.
+- **Stay focused.** Dependency map, not codebase review. Don't flag bugs.
+- **Communities are descriptive.** Label by purpose, not path.

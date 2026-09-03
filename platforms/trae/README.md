@@ -2,7 +2,7 @@
 
 > Use Ironworks skills with Trae. 12 skills · 7 layers · 60+ commands.
 
-**Part of [Ironworks](https://github.com/RahulHulsure/-Ironworks)** — Industrial-grade development pipeline for AI coding agents.
+**Part of [Ironworks](https://github.com/RahulHulsure/-Ironworks)** -- Development pipeline for AI coding agents.
 
 ## Install
 

@@ -1,11 +1,9 @@
 ---
 name: iron-help
-description: "Show all Ironworks commands, what they do, and when to use each one."
-homepage: https://github.com/RahulHulsure/-Ironworks
-license: MIT
+description: "Ironworks command reference."
 ---
 
-# /iron:help — Ironworks Command Reference
+# /iron:help
 
 Print this reference when invoked. No preamble, no extras.
 
@@ -55,10 +53,8 @@ Print this reference when invoked. No preamble, no extras.
 | `/iron:deploy fly` | Ship | Generate fly.toml with health checks and scaling |
 | `/iron:deploy migrate <source>` | Ship | Migrate config from heroku/render/railway/fly/docker-compose/aws-ecs |
 | `/iron:deploy preview` | Ship | Generate CI config for PR preview environments |
-| `/iron:handoff` | Cross | Compress session into a handoff document |
-| `/iron:handoff --for-agent` | Cross | Handoff optimized for another Claude session |
-| `/iron:handoff --for-human` | Cross | Handoff optimized for a team member |
-| `/iron:help` | — | This reference |
+| `/iron:handoff [--for-agent\|--for-human]` | Cross | Compress session into handoff (agent-optimized or human-readable) |
+| `/iron:help` | -- | This reference |
 
 ## Recommended Workflows
 
@@ -71,20 +67,6 @@ Architecture:     /iron:graph → /iron:arch → /iron:arch --fix
 End of session:   /iron:handoff
 ```
 
-## Layers
-
-```
-Layer 0  DISCIPLINE   Always active — priority stack, discipline ladder, security rules
-Layer 1  SETUP        /iron:init — project bootstrap
-Layer 2  UNDERSTAND   /iron:graph — dependency map and codebase queries
-Layer 3  PLAN         /iron:spec — spec-driven feature proposals
-Layer 4  BUILD        /iron:tdd, /iron:debug, /iron:arch — construction and quality
-Layer 5  QUALITY      /iron:review, /iron:audit — review and simplification
-Layer 6  SHIP         /iron:preflight, /iron:deploy — deployment validation and config
-Layer ∞  CONTINUITY   /iron:handoff — session and team handoffs
-```
-
 ## Always Active
 
-The Ironworks discipline ladder and security rules are active every response,
-even without invoking a specific command. See AGENTS.md for details.
+Discipline ladder and security rules apply every response. See AGENTS.md.
