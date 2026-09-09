@@ -22,7 +22,7 @@
 <p align="center">
   <a href="#-quick-start">Quick Start</a> •
   <a href="#%EF%B8%8F-supported-platforms">Platforms</a> •
-  <a href="#-all-12-skills">Skills</a> •
+  <a href="#-all-13-skills">Skills</a> •
   <a href="#-workflows">Workflows</a> •
   <a href="#-origins">Origins</a> •
   <a href="#-roadmap">Roadmap</a>
@@ -64,6 +64,7 @@ After installing, **Layer 0 is automatically active** -- the discipline ladder, 
 
 ```bash
 # Your first commands
+/iron:forge "<requirements>"  # Build an entire app from requirements (autopilot)
 /iron:help                    # See all commands
 /iron:init                    # Scaffold a new project
 /iron:graph                   # Map an existing codebase
@@ -403,6 +404,12 @@ See [`platforms/README.md`](platforms/README.md) for detailed per-platform setup
 
 ## 🔄 Workflows
 
+### Full Autopilot (NEW in v1.1.0)
+```
+/iron:forge "<requirements>" --platform <platform>
+```
+> One command drives the entire pipeline: init → spec → build → review → ship. Works on greenfield and existing projects.
+
 ### New Project
 ```
 /iron:init → /iron:spec explore → /iron:spec propose → /iron:tdd → /iron:review → /iron:preflight
@@ -472,6 +479,7 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 -Ironworks/
 ├── .claude-plugin/              # Claude Code plugin manifest
 ├── .openclaw/skills/            # Core skill definitions (13 skills)
+│   ├── iron-forge/SKILL.md      # ★ — Autonomous app builder (orchestrator)
 │   ├── iron-init/SKILL.md       # L1 — Project bootstrap
 │   ├── iron-graph/SKILL.md      # L2 — Dependency mapping
 │   ├── iron-spec/SKILL.md       # L3 — Spec-driven dev
