@@ -1,4 +1,4 @@
-<!-- Ironworks: 12 production-grade skills for AI coding agents. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Gemini CLI, and 10+ more platforms. Open source MIT. -->
+<!-- Ironworks: 13 production-grade skills for AI coding agents. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Gemini CLI, and 10+ more platforms. Open source MIT. -->
 
 <p align="center">
   <img src="docs/banner.svg" alt="Ironworks -- AI coding agent skills for Claude Code, Cursor, GitHub Copilot, Windsurf, and 16+ platforms" width="100%">
@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>AI coding agent skills for Claude Code, Cursor, GitHub Copilot, and your entire development pipeline.</strong><br>
-  12 production-grade skills across 7 layers -- from project bootstrap to deploy preflight.
+  13 production-grade skills across 7 layers -- from project bootstrap to deploy preflight.
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
   <a href="https://github.com/RahulHulsure/-Ironworks/network/members"><img src="https://img.shields.io/github/forks/RahulHulsure/-Ironworks?style=flat&color=blue" alt="Forks"></a>
   <a href="https://github.com/RahulHulsure/-Ironworks/issues"><img src="https://img.shields.io/github/issues/RahulHulsure/-Ironworks?style=flat&color=red" alt="Issues"></a>
   <img src="https://img.shields.io/github/last-commit/RahulHulsure/-Ironworks?style=flat&color=green" alt="Last Commit">
-  <img src="https://img.shields.io/badge/skills-12-brightgreen.svg" alt="12 Skills">
+  <img src="https://img.shields.io/badge/skills-13-brightgreen.svg" alt="13 Skills">
   <img src="https://img.shields.io/badge/platforms-16+-purple.svg" alt="16+ Platforms">
 </p>
 
@@ -91,11 +91,13 @@ Layer 4  BUILD        /iron:tdd, /iron:debug, /iron:arch — construction and qu
 Layer 5  QUALITY      /iron:review, /iron:audit — review and simplification
 Layer 6  SHIP         /iron:preflight, /iron:deploy — deployment validation
 Layer ∞  CONTINUITY   /iron:handoff — session and team handoffs
+
+★  ORCHESTRATOR   /iron:forge — autonomous end-to-end: requirements → deploy-ready app
 ```
 
 ---
 
-## 📦 All 12 Skills
+## 📦 All 13 Skills
 
 ### Layer 0: Discipline — Always Active
 
@@ -110,6 +112,33 @@ No command needed. These rules enforce themselves every response via [`AGENTS.md
 | **Bug Fix Rules** | Target root cause, grep all callers, fix the shared function once |
 | **Domain Language** | `CONTEXT.md` as shared glossary -- challenge fuzzy terms |
 | **Never Compromise** | Input validation, error handling, parameterized queries, auth, accessibility, minimal tests |
+
+---
+
+### ★ Orchestrator: `/iron:forge` — Autonomous App Builder
+
+One command: requirements in, deploy-ready app out. Chains every Ironworks skill into an autonomous pipeline.
+
+```bash
+/iron:forge "A task management API with auth, teams, and real-time updates" --platform fly
+/iron:forge --file requirements.md --stack fastapi --platform aws
+/iron:forge --resume                 # Pick up where you left off
+/iron:forge --dry-run                # Plan the build without executing
+/iron:forge status                   # Check progress mid-build
+```
+
+**Pipeline:** `INTAKE` → `FOUNDATION` → `SPECIFICATION` → `BUILD` → `INTEGRATION` → `SHIP`
+
+| Phase | What happens | Skills used |
+|-------|-------------|-------------|
+| **Intake** | Parse requirements, decompose features, order by dependency | — |
+| **Foundation** | Scaffold project, populate domain glossary, explore features | `/iron:init`, `/iron:spec explore` |
+| **Specification** | Create specs for every feature, cross-validate | `/iron:spec propose` |
+| **Build** | TDD per feature, debug failures, update graph | `/iron:tdd`, `/iron:debug`, `/iron:graph` |
+| **Integration** | Architecture check, full code review, simplification audit | `/iron:arch`, `/iron:review`, `/iron:audit` |
+| **Ship** | Preflight checks, deploy config, archive specs, handoff | `/iron:preflight`, `/iron:deploy`, `/iron:handoff` |
+
+**Quality gates** at every phase boundary with retry loops and hard caps. Exceeding caps pauses for human input — never silently skips a gate. Progress checkpointed to `ironworks/forge/checkpoint.json` for resumable builds.
 
 ---
 
@@ -442,7 +471,7 @@ Ironworks synthesizes concepts from 7 open-source tools into one original codeba
 ```
 -Ironworks/
 ├── .claude-plugin/              # Claude Code plugin manifest
-├── .openclaw/skills/            # Core skill definitions (12 skills)
+├── .openclaw/skills/            # Core skill definitions (13 skills)
 │   ├── iron-init/SKILL.md       # L1 — Project bootstrap
 │   ├── iron-graph/SKILL.md      # L2 — Dependency mapping
 │   ├── iron-spec/SKILL.md       # L3 — Spec-driven dev

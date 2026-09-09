@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ironworks",
-  "description": "Development pipeline -- 12 skills across 7 layers, from bootstrap to deploy.",
+  "description": "Development pipeline -- 13 skills across 7 layers, from bootstrap to deploy.",
   "owner": {
     "name": "Rahul Hulsure",
     "url": "https://github.com/RahulHulsure"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "ironworks",
-      "description": "Twelve skills covering the full dev lifecycle: project scaffold, knowledge graph, spec-driven features, TDD, debugging, architecture analysis, code review, audit, deploy preflight, platform deploy, and session handoff.",
+      "description": "Thirteen skills covering the full dev lifecycle: autonomous app builder, project scaffold, knowledge graph, spec-driven features, TDD, debugging, architecture analysis, code review, audit, deploy preflight, platform deploy, and session handoff.",
       "source": "./",
       "category": "productivity"
     }

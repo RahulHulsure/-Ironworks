@@ -10,13 +10,25 @@
 - [x] Universal install scripts (`install.sh`, `install.ps1`)
 - [x] Per-folder READMEs
 
-## v1.1.0 — Planned
+## v1.1.0 — Released
+
+- [x] **`/iron:forge`** -- autonomous end-to-end app builder (requirements → deploy-ready app)
+  - Orchestrates the entire skill chain: init → spec → build → review → ship
+  - 5 entry modes: GREENFIELD, BROWNFIELD, MIDSTREAM, RESUME, EXTEND
+  - Feature modes: NEW, EXISTS, EXTEND, REWORK -- auto-detected via codebase reconnaissance
+  - Quality gates at every phase with retry loops and hard caps
+  - Checkpoint system for resumable builds across sessions
+  - 849-line skill definition with conditional logic for every phase
+- [x] **Skill composition** -- `/iron:forge` chains all 12 original skills into an autonomous pipeline
+- [x] Skill count: 12 → 13
+- [x] Updated all 16 platform adapters, READMEs, and plugin metadata
+
+## v1.2.0 — Planned
 
 - [ ] **MCP server integration** -- expose skills as MCP tools for cross-platform interop
 - [ ] **`/iron:test`** -- test runner skill with coverage tracking
 - [ ] **`/iron:migrate`** -- database migration management
 - [ ] **Interactive mode** -- step-by-step guided workflows
-- [ ] **Skill composition** -- chain skills in `.ironworks/workflows.yml`
 
 ## v1.2.0 — Exploring
 

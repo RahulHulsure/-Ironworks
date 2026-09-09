@@ -38,4 +38,4 @@ This skill pairs with TDD for regression tests after fixing:
 /iron:debug → /iron:tdd fix → /iron:review
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

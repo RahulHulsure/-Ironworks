@@ -39,4 +39,4 @@ This skill pairs with spec-driven development and feeds into review:
 /iron:spec apply → /iron:tdd → /iron:review
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

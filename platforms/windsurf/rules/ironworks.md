@@ -4,7 +4,7 @@
 # Ironworks — AI Development Pipeline
 
 > Development rules for AI coding agents.
-> 12 skills · 7 layers · 60+ commands
+> 13 skills · 7 layers · 60+ commands
 
 Repository: https://github.com/RahulHulsure/-Ironworks
 License: MIT · © 2026 Rahul Hulsure

@@ -43,4 +43,4 @@ This skill generates configs after preflight validation:
 /iron:preflight → /iron:deploy <platform> → deploy
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

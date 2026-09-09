@@ -49,4 +49,4 @@ This skill is the map to all other skills:
 /iron:help → pick the right command → go
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

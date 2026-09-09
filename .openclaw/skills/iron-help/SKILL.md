@@ -11,6 +11,10 @@ Print this reference when invoked. No preamble, no extras.
 
 | Command | Layer | What it does |
 |---------|-------|-------------|
+| `/iron:forge` | Orchestrate | Autonomous end-to-end app builder — requirements in, deploy-ready app out |
+| `/iron:forge --resume` | Orchestrate | Resume a forge run from the last checkpoint |
+| `/iron:forge --dry-run` | Orchestrate | Plan the build (decompose features, order) without executing |
+| `/iron:forge status` | Orchestrate | Show current forge progress |
 | `/iron:init` | Setup | Bootstrap a project: folder structure, CLAUDE.md, git, specs, CI |
 | `/iron:graph` | Understand | Map codebase dependencies, hotspots, orphans, circular deps |
 | `/iron:graph query "..."` | Understand | Ask questions about the codebase structure |
@@ -59,6 +63,7 @@ Print this reference when invoked. No preamble, no extras.
 ## Recommended Workflows
 
 ```
+Full autopilot:   /iron:forge "<requirements>" --platform <platform>
 New project:      /iron:init → /iron:spec propose → /iron:tdd → /iron:review → /iron:preflight
 Existing project: /iron:graph → /iron:spec propose → /iron:tdd → /iron:review → /iron:spec archive
 Bug fix:          /iron:debug → /iron:tdd fix → /iron:review

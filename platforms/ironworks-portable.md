@@ -1,7 +1,7 @@
 # Ironworks — AI Development Pipeline
 
 > Development pipeline for AI coding agents.
-> 12 skills · 7 layers · 60+ commands
+> 13 skills · 7 layers · 60+ commands
 
 Repository: https://github.com/RahulHulsure/-Ironworks
 
@@ -110,9 +110,22 @@ Preserve context across sessions. Summarizes work done, lists modified files, ap
 
 **Session recall:** Reads most recent handoff before starting work.
 
+## /iron:forge — Autonomous App Builder
+
+End-to-end pipeline: requirements in, deploy-ready app out. Chains every skill automatically.
+
+**Pipeline:** INTAKE (decompose features, order by dependency) → FOUNDATION (`/iron:init` + domain context + exploration) → SPECIFICATION (`/iron:spec propose` per feature, cross-validate) → BUILD (`/iron:tdd` per feature, `/iron:debug` on failures, `/iron:graph --update`) → INTEGRATION (`/iron:arch` + `/iron:review` + `/iron:audit`) → SHIP (`/iron:preflight` + `/iron:deploy` + `/iron:spec archive` + `/iron:handoff`)
+
+**Quality gates** at every phase boundary with retry loops and hard caps. Exceeding caps pauses for human.
+
+**Checkpoint system:** Saves progress to `ironworks/forge/checkpoint.json`. Resume with `/iron:forge --resume`.
+
+**Variants:** `"<requirements>"` (inline), `--file <path>`, `--platform <platform>`, `--stack <stack>`, `--dry-run` (plan only), `--resume`, `status`
+
 ## Workflows
 
 ```
+Full autopilot: /iron:forge "<requirements>" --platform <platform>
 New project:    /iron:init → /iron:spec propose → /iron:tdd → /iron:review → /iron:preflight
 Existing:       /iron:graph → /iron:spec explore → (build) → /iron:review → /iron:handoff
 Bug fix:        /iron:debug → /iron:tdd fix → /iron:review
@@ -132,4 +145,6 @@ L4  BUILD        /iron:tdd, /iron:debug, /iron:arch — construction and quality
 L5  QUALITY      /iron:review, /iron:audit — review and simplification
 L6  SHIP         /iron:preflight, /iron:deploy — deployment and config
 L∞  CONTINUITY   /iron:handoff — session and team handoffs
+
+★   ORCHESTRATOR /iron:forge — autonomous end-to-end: requirements → deploy-ready app
 ```

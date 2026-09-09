@@ -1,6 +1,6 @@
 # Ironworks for GitHub Copilot
 
-> Use Ironworks skills with GitHub Copilot. 12 skills · 7 layers · 60+ commands.
+> Use Ironworks skills with GitHub Copilot. 13 skills · 7 layers · 60+ commands.
 
 **Part of [Ironworks](https://github.com/RahulHulsure/-Ironworks)** -- Development pipeline for AI coding agents.
 

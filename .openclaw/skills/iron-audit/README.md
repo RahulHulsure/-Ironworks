@@ -41,4 +41,4 @@ This skill is for periodic maintenance and pre-release cleanup:
 /iron:graph → /iron:arch → /iron:audit → /iron:audit --fix
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

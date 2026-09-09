@@ -42,4 +42,4 @@ This skill is the quality gate before shipping:
 /iron:tdd → /iron:review → /iron:preflight → /iron:deploy
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

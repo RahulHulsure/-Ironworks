@@ -39,4 +39,4 @@ This skill bookends every session:
 [any work] → /iron:handoff → [new session picks up]
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

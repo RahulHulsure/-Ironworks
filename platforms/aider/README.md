@@ -1,6 +1,6 @@
 # Ironworks for Aider
 
-> Use Ironworks skills with Aider. 12 skills · 7 layers · 60+ commands.
+> Use Ironworks skills with Aider. 13 skills · 7 layers · 60+ commands.
 
 **Part of [Ironworks](https://github.com/RahulHulsure/-Ironworks)** -- Development pipeline for AI coding agents.
 

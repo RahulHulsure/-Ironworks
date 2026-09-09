@@ -31,4 +31,4 @@ Claude Code scans `.openclaw/skills/*/SKILL.md` at plugin load time. Each skill 
 - `iron-graph/` maps to `/iron:graph`
 - etc.
 
-See [`skills/README.md`](skills/README.md) for a full listing of all 12 skills.
+See [`skills/README.md`](skills/README.md) for a full listing of all 13 skills.

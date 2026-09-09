@@ -14,6 +14,7 @@ The following principles are **always on** (no command needed):
 
 | Command | What it does |
 |---------|-------------|
+| `/iron:forge` | **Autonomous app builder** — requirements in, deploy-ready app out |
 | `/iron:init` | Bootstrap a project from zero |
 | `/iron:graph` | Map codebase dependencies |
 | `/iron:spec` | Spec-driven feature development |
@@ -30,6 +31,7 @@ The following principles are **always on** (no command needed):
 ## Quick Start
 
 ```
+/iron:forge "<requirements>"  — build an entire app from requirements (autopilot)
 /iron:help                    — see all commands
 /iron:init                    — scaffold a new project
 /iron:graph                   — map an existing codebase

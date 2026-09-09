@@ -40,4 +40,4 @@ This skill connects understanding to refactoring:
 /iron:graph → /iron:arch → /iron:arch --fix → /iron:spec propose
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

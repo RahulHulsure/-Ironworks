@@ -40,4 +40,4 @@ This skill is the starting point of every new project:
 /iron:init → /iron:spec propose → /iron:tdd → /iron:review → /iron:preflight
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)

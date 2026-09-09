@@ -42,4 +42,4 @@ This skill is the planning hub that feeds into building and review:
 /iron:init → /iron:spec propose → /iron:tdd → /iron:review → /iron:spec archive
 ```
 
-→ [View all 12 skills](https://github.com/RahulHulsure/-Ironworks)
+→ [View all 13 skills](https://github.com/RahulHulsure/-Ironworks)
